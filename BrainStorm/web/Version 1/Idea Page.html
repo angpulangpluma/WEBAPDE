@@ -1,0 +1,97 @@
+<html>
+<head>
+	<title>Team Nerds</title>
+	<link rel="stylesheet" type="text/css" media="all" href="Idea Style.css"/>
+	<link rel="shortcut icon" href="Tab Icon.png"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#group").click(function(){
+			window.location.href = "Main Page.html";
+		});
+		$("#user").click(function(){
+			window.location.href = "Edit Profile Page.html";
+		});
+		$("#home").click(function(){
+			window.location.href = "Home Page.html";
+		});
+		$("#logout").click(function(){
+			window.location.href = "Log In and Sign Up.html";
+		});
+		$("#icon").click(function(){
+			window.location.href = "Home Page.html";
+		});
+		$("#grp-name").click(function(){
+			window.location.href = "Main Page.html";
+		});
+	});
+	</script>
+</head>
+<body>
+<div id="header">
+	<span id="left-header">
+		<img id="icon" src="Icon.png"/>
+		<span id="group">Team Nerds</span>
+		<select id="group-select" class="h-select">
+			<option>Members</option>
+			<option>Switch Group</option>
+			<option>Edit Group</option>
+		</select>
+		<input id="search" type="text" placeholder="Search" style="color: black">
+	</span>
+	
+	<span id="right-header">
+		<button id="user">Marienne Lopez</button>
+		<span id="line"></span>
+		<button id="home">Home</button>
+		<span id="line"></span>
+		<button id="logout">Log Out</button>
+		<!---
+		<select id="user-select" class="h-select">
+			<option>Settings</option>
+			<option>Log Out</option>
+		</select>
+		-->
+	</span>
+</div>
+
+<div id="idea" align="center">
+	<div class="box">
+		<div id="b-head">
+			<span id="maker">Jet Virtusio</span>
+			<span id="date-time">1:23pm</span>
+			<span id="b-topic">HTML</span>
+		</div>
+		<!--<div id="title">This is an Idea</div>-->
+		<div id="content">These sentences are stuffs about the idea. These sentences are stuffs about the idea. 
+				klsdka askdjskl asdklj ;madmsakdmsadThese sentences are stuffs about the idea. Blablablabla alsjd laksjdkslajdksadk asldn askdnsa laksds</div>
+		<div id="b-footer">
+			<span id="comments-num">2</span> Comments
+			<span id="agree-num">5</span> Agrees
+			<span id="disagree-num">3</span> Disagrees
+		</div>
+		<div id="comments">
+			<div class="comment">
+				<span id="comment-user">Marienne Lopez</span>
+				<span id="comment-date-time">1:50pm</span><br/>
+				<span id="comment-content">Nice idea Jet!</span>
+			</div>
+			<div class="comment">
+				<span id="comment-user">Hannah Sibayan</span>
+				<span id="comment-date-time">1:55pm</span><br/>
+				<span id="comment-content">Nice nice nice!</span>
+			</div>
+		</div>
+		<div id="write">
+			<textarea id="text-comment" placeholder="Write your comment here.."></textarea>
+			<input id="button-comment" type="button" value="Post"/>
+		</div>
+	</div>
+</div>
+
+<!--
+<div id="footer">
+</div>
+-->
+</body>
+</html>

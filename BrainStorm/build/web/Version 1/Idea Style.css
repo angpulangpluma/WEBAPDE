@@ -1,0 +1,309 @@
+@font-face {
+	font-family: header;
+	src: url("Lato-Light.ttf");
+}
+
+body {
+	background-color: #F5F5F5;
+	background-repeat: repeat;
+	overflow: hidden;
+	font-family: helvetica;
+	font-size: 17;
+	font-weight: normal;
+	color:  white;
+	overflow-y: auto;
+}
+
+select {
+	font-family: helvetica;
+	font-size: 14;
+	border: 0px;
+	background-color: transparent;
+}
+
+select:focus {
+	outline: 0;
+}
+
+/* ---------------------- HEADER ---------------------- */
+
+#header {
+	position: relative;
+	left: -8px;
+	top: -8px;
+	background-color: #FF5252;
+	height: 37px;
+	width: 101.2%;
+	border-bottom: 1px solid red;
+	-webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .5);
+	z-index: 2;
+}
+
+#left-header {
+	float: left;
+	position: relative;
+	top: 10px;
+	left: 110px;
+}
+
+#icon {
+	height: 30px;
+	width: 30px;
+	margin-top: -5px;
+}
+
+#group {
+	position: relative;
+	top: -10px;
+	margin-left: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+#group-select {
+	position: relative;
+	top: -10px;
+	margin-left: 10px;
+}
+
+#search {
+	position: relative;
+	top: -11px;
+	margin-left: 10px;
+	color: lightgray;
+	background-color: white;
+	height: 23px;
+	width: 250px;
+	border: 0px;
+	border-radius: 3px;
+	text-indent: 5px;
+}
+
+#right-header {
+	float: right;
+	position: relative;
+	top: 10px;
+	right: 110px;
+}
+
+#user {
+	font-weight: bold;
+}
+
+#user, #home, #logout {
+	color: white;
+	border: 0;
+	background-color: transparent;
+	font-family: helvetica;
+	font-size: 15;
+	outline: none;
+}
+
+#user:hover, #home:hover {
+	background-color: #E53935;
+	border-radius: 4px;
+	outline: none;
+}
+
+#logout {
+	color: #B71C1C;
+}
+
+#logout:hover {
+	color: white;
+}
+
+.h-select {
+	width: 20px;
+	height: 20px;
+	color: white;
+	background-color: #ff3333;
+	border: 0px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+#user-select {
+/*
+	position: relative;
+	right: 140px;
+	top: 10px;
+	*/
+}
+
+#line {
+	border-left: 1px solid #E53935;
+	height: 5px;
+	margin-right: 6px;
+}
+
+/* ---------------------- IDEA ---------------------- */
+
+#idea {
+	width: 500px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	text-align: left;
+}
+
+.box {
+	/*
+	float: left;
+	position: relative;
+	left: 110px;
+	*/
+	width: 500px;
+	height: auto;
+	border-radius: 3px;
+	/* -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .2);	*/
+	background-color: white;
+}
+
+#b-head {
+	text-align: left;
+	padding: 5px;
+	background-color: #EEEEEE;
+}
+
+#maker {
+	font-size: 14;
+	font-weight: bold;
+	color: #757575;
+	height: auto;
+	width: auto;
+}
+
+#date-time {
+	font-size: 14;
+	font-weight: normal;
+	color: #757575;
+}
+
+#b-topic {
+	float: right;
+	background-color: #03A9F4;
+	font-size: 12;
+	font-weight: bold;
+	font-style: italic;
+	height: auto;
+	width: auto;
+	color: white;
+	padding: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: -2px;
+}
+
+#title {
+	font-size: 20;
+	margin: 5px;
+	color: #03A9F4;
+	font-style: bold;
+	/*
+	border-bottom: 2px solid rgba(232,232,232,.6);
+	padding-bottom: 5px;
+	*/
+}
+
+#content {
+	font-size: 14;
+	margin: 5px;
+	color: black;
+	overflow: auto;
+	height: 105px;
+}
+
+#b-footer {
+	position: relative;
+	right: 0;
+	bottom: 0;
+	width: 490px;
+	color: #757575;
+	text-align: right;
+	font-size: 12;
+	font-weight: normal;
+	padding: 5px;
+}
+
+#comments-num {
+	font-weight: bold;
+	border: 0;
+	padding: 2px;
+}
+
+#agree-num, #disagree-num {
+	font-weight: bold;
+	border: 0;
+	padding: 2px;
+	margin-left: 3px;
+}
+
+/* ---------------------- COMMENTS ---------------------- */
+
+.comment {
+	position: relative;
+	height: auto;
+	width: 490px;
+	color: black;
+	background-color: white;
+	border-top: 2px solid #EEEEEE;
+	padding: 5px;
+}
+
+#comment-user {
+	font-weight: bold;
+	font-size: 15;
+}
+
+#comment-content {
+	font-size: 15;
+}
+
+#comment-date-time {
+	color: gray;
+	font-size: 14;
+}
+
+#write  {
+	height: 100px;
+	width: 500px;
+	border-top: 2px solid #EEEEEE;
+}
+
+#text-comment {
+	height: 65px;
+	width: 500px;
+	font-family: helvetica;
+	padding: 5px;
+	border: 0;
+	resize: none;
+}
+
+#button-comment {
+	margin: 5px;
+	float: right;
+	color: white;
+	background-color: #EF5350;
+	height: 25px;
+	width: 70px;
+	border: 0px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+}
+
+/* ---------------------- FOOTER ---------------------- */
+
+#footer {
+	position: fixed;
+	left: -8px;
+	bottom: 0%;
+	background-color: #F0F0F0;
+	height: 30px;
+	width: 101.2%;
+	border-bottom: 1px solid lightgray;
+	-webkit-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, .3);
+	z-index: 1;
+	color: black;
+}

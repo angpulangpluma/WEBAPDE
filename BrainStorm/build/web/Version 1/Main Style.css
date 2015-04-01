@@ -1,0 +1,414 @@
+@font-face {
+	font-family: header;
+	src: url("Lato-Light.ttf");
+}
+
+body {
+	background-color: #F5F5F5;
+	background-repeat: repeat;
+	overflow: hidden;
+	font-family: helvetica;
+	font-size: 17;
+	font-weight: normal;
+	color:  white;
+	overflow-y: auto;
+}
+
+select {
+	font-family: helvetica;
+	font-size: 14;
+	border: 0px;
+	background-color: transparent;
+}
+
+select:focus {
+	outline: 0;
+}
+
+/* ---------------------- POPUP ADD ---------------------- */
+
+#add-popup {
+	width: 400px;
+	height: 225px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	z-index: 100;
+	
+	background-color: #EEEEEE;
+	border: 1px solid #E0E0E0;
+	border-radius: 5px;
+	color: black;
+	-webkit-box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, .4);
+}
+
+#content-popup {
+	width: 380px;
+	height: 180px;
+	position: relative;
+	top: 10px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
+
+#topic-popup {
+	margin-right: 10px;
+}
+
+#x {
+	position: absolute;
+	top: -11px;
+	right: 0;
+	width: 40px;
+	height: 20px;
+	background-color: #EF5350;
+	color: white;
+	text-align: center;
+	border: 0;
+	font-size: 13;
+}
+
+#select-popup {
+	width: 250px;
+	height: 30px;
+	background-color: #E0E0E0;
+	border-radius: 10px;
+	text-indent: 5px;
+}
+
+#text-popup {
+	font-family: helvetica;
+	padding: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 0;
+	resize: none;
+}
+
+#button-popup {
+	float: right;
+	color: white;
+	background-color: #EF5350;
+	height: 25px;
+	width: 70px;
+	border: 0px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+}
+
+/* ---------------------- HEADER ---------------------- */
+
+#header {
+	position: relative;
+	left: -8px;
+	top: -8px;
+	background-color: #FF5252;
+	height: 37px;
+	width: 101.2%;
+	border-bottom: 1px solid red;
+	-webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .5);
+	z-index: 2;
+}
+
+#left-header {
+	float: left;
+	position: relative;
+	top: 10px;
+	left: 110px;
+}
+
+#icon {
+	height: 30px;
+	width: 30px;
+	margin-top: -5px;
+}
+
+#group {
+	position: relative;
+	top: -10px;
+	margin-left: 10px;
+	color: white;
+	font-weight: bold;
+}
+
+#group-select {
+	position: relative;
+	top: -10px;
+	margin-left: 10px;
+}
+
+#search {
+	position: relative;
+	top: -11px;
+	margin-left: 10px;
+	color: lightgray;
+	background-color: white;
+	height: 23px;
+	width: 250px;
+	border: 0px;
+	border-radius: 3px;
+	text-indent: 5px;
+}
+
+#right-header {
+	float: right;
+	position: relative;
+	top: 10px;
+	right: 110px;
+}
+
+#user {
+	font-weight: bold;
+}
+
+#user, #home, #logout {
+	color: white;
+	border: 0;
+	background-color: transparent;
+	font-family: helvetica;
+	font-size: 15;
+	outline: none;
+}
+
+#user:hover, #home:hover {
+	background-color: #E53935;
+	border-radius: 4px;
+	outline: none;
+}
+
+#logout {
+	color: #B71C1C;
+}
+
+#logout:hover {
+	color: white;
+}
+
+.h-select {
+	width: 20px;
+	height: 20px;
+	color: white;
+	background-color: #ff3333;
+	border: 0px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+#user-select {
+/*
+	position: relative;
+	right: 140px;
+	top: 10px;
+	*/
+}
+
+#line {
+	border-left: 1px solid #E53935;
+	height: 5px;
+	margin-right: 6px;
+}
+
+/* ---------------------- TITLE HEAD ---------------------- */
+
+#title-head {
+	position: relative;
+	margin-left: 110px;
+	margin-right: 110px;
+	margin-top: 10px;
+}
+
+#title-project {
+	font-family: header;
+	font-size: 35;
+	color: #757575;
+}
+
+#proj-select {
+	width: 20px;
+	height: 20px;
+}
+
+.title-right {
+	float: right;
+	font-family: header;
+	font-size: 18;
+	color: #F44336;
+	border: 1px solid #EEEEEE;
+	border-radius: 20px;
+	padding-bottom: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	margin: 5px;
+	margin-right: 20px;
+	
+	position: absolute;
+	bottom: 0;
+}
+
+.title-select {
+	color: #F44336;
+	font-family: header;
+	font-size: 16;
+	font-weight: bold;
+}
+
+#view {
+	right: 285px;
+}
+
+#sort {
+	right: 60px;
+}
+
+#add {
+	float: right;
+	font-family: header;
+	font-size: 30;
+	text-decoration: none;
+	color: white;
+	background-color: #FF8A80;
+	border: 1px solid #EEEEEE;
+	border-radius: 20px;
+	padding-bottom: 2px;
+	padding-left: 12px;
+	padding-right: 12px;
+	margin-right: 25px;
+	
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+#add:link, #add:visited {
+    text-decoration: none;
+}
+
+#add:hover  {
+	-webkit-box-shadow: 0px 0px 50px -10px rgba(0, 0, 0, .4);
+}
+/* ---------------------- IDEAS ---------------------- */
+
+#ideas {
+	width: auto;
+	height: auto;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 10px;
+	text-align: left;
+}
+
+.box {
+	/*
+	float: left;
+	position: relative;
+	left: 110px;
+	*/
+	position: relative;
+	float: left;
+	margin: 13px;
+	width: 350px;
+	height: 200px;
+	border-radius: 3px;
+	/* -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .2);	*/
+	background-color: white;
+}
+
+#b-head {
+	text-align: left;
+	padding: 5px;
+	background-color: #EEEEEE;
+}
+
+#maker {
+	font-size: 14;
+	font-weight: bold;
+	color: #757575;
+	height: auto;
+	width: auto;
+}
+
+#date-time {
+	font-size: 14;
+	font-weight: normal;
+	color: #757575;
+}
+
+#b-topic {
+	float: right;
+	background-color: #03A9F4;
+	font-size: 12;
+	font-weight: bold;
+	font-style: italic;
+	height: auto;
+	width: auto;
+	color: white;
+	padding: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: -2px;
+}
+
+#title {
+	font-size: 20;
+	margin: 5px;
+	color: #03A9F4;
+	font-style: bold;
+	/*
+	border-bottom: 2px solid rgba(232,232,232,.6);
+	padding-bottom: 5px;
+	*/
+}
+
+#content {
+	font-size: 14;
+	margin: 5px;
+	color: black;
+	overflow: auto;
+	height: 105px;
+}
+
+#b-footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 340px;
+	color: #757575;
+	text-align: right;
+	font-size: 12;
+	font-weight: normal;
+	padding: 5px;
+	border-top: 2px dotted #03A9F4;
+}
+
+#comments {
+	font-weight: bold;
+	border: 0;
+	padding: 2px;
+}
+
+#agree, #disagree {
+	font-weight: bold;
+	border: 0;
+	padding: 2px;
+	margin-left: 3px;
+}
+
+/* ---------------------- FOOTER ---------------------- */
+
+#footer {
+	position: fixed;
+	left: -8px;
+	bottom: 0%;
+	background-color: #F0F0F0;
+	height: 30px;
+	width: 101.2%;
+	border-bottom: 1px solid lightgray;
+	-webkit-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, .3);
+	z-index: 1;
+	color: black;
+}
