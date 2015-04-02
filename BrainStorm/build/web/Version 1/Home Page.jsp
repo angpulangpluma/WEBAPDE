@@ -7,18 +7,29 @@
 <html>
 <head>
 	<title>Brainstorm</title>
-	<link rel="stylesheet" type="text/css" media="all" href="Home Style.css"/>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+       <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        
+        
 	<link rel="shortcut icon" href="Tab Icon.png"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="brainstorm_func.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="Home Style.css"/>
+        <script type="text/javascript" src="brainstorm_func.js"></script>
+        
+        
+        
 	<%
         UserBean Bean = (UserBean) session.getAttribute("user");
         HomePageBean pagebean = (HomePageBean) session.getAttribute("homepage");
         ArrayList<Group> groups = pagebean.getGroups();
         int gnumber = groups.size();
-        %>
-        
+        %>      
         <script>
+            
             
             
 	$(document).ready(function(){
@@ -26,7 +37,28 @@
                 var currGroup = "0";
                 var pageShow, pageHide, pageHide1, pageHide2;
                 var groupname="#"+currGroup;
+                var search;
+                var sugg=[];
+ 
+                $("#search").keyup(function(){
+                    search = $("#search").val();
+                     console.log("key Up");
+                    $.get('../AutoComplete',{keyword:search},function(responseText) { 
+                        console.log("BITCH PLS");
+                        console.log(responseText);  
+                        sugg= responseText.split("\n");
+                        console.log(sugg);
+                    });  
+                    
+                $("#search").autocomplete({
+                source: sugg
+                });
+                    
+                    
+                });
                 
+                             
+            
                 $('#selectedgroup').text($(groupname).text());     
                  for(var cont=0; cont< 3; cont++ ){
                 $("#grp-projects-page-"+cont).hide();
@@ -53,9 +85,10 @@
 		$("#grp-name").click(function(){
 			window.location.href = "Main Page.html";
 		});
-		$(".proj-name").click(function(){
-			window.location.href = "Main Page.html";
-		});
+                
+	//	$(".proj-name").click(function(){
+	//		window.location.href = "Main Page.html";
+	//	});
 		$("#grp-projects").click(function(){
                         pageHide = "#grp-members-page-" + currGroup;
                         pageShow = "#grp-projects-page-" + currGroup;
@@ -80,19 +113,22 @@
                         groupname="#"+currGroup;
                     
                       $('#selectedgroup').text($(groupname).text());
-                       // document.getElementById("selectedgroup").textContent= 
-                        
+                       // document.getElementById("selectedgroup").textContent=          
 		});
+               
+        
+
 	});
 	</script>
 </head>
 <body>
-        
+
+     
 <div id="header">
         
 	<span id="left-header">
 		<img id="icon" src="Icon.png"/>
-		<input id="search" type="text" placeholder="Search" style="color: black">
+		<input id="search" type="text" placeholder="Search" style="color: black">     
 	</span>
 	
 	<span id="right-header">
@@ -112,6 +148,7 @@
 
 <div id="center-content">
 
+       
 	<div id="groups-whole">
 	<span class="titles" id="grp-title">Groups</span>
 	<div id="groups">
@@ -161,10 +198,9 @@
 			       
                         <%
                         for(Project p: proj){    
-                        System.out.println(g.getGroupName() + "UR TOPIC IS " +p.getName());
                         %>
                             <div class="grp-box">
-					<a class="proj-name"><%=p.getName()%></a>
+                                <a  href="../IdeaPageServlet?id=<%=p.getID()%>" class="proj-name"><%=p.getName()%></a>
 					<div class="proj-ideas">10 Ideas</div>
 				</div>
                         <%

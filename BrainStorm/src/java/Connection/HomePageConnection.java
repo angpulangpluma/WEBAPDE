@@ -53,6 +53,36 @@ public class HomePageConnection {
     }
     
     
+    public String getSuggestions(String word){
+        
+        String sql = "select username,firstname, lastname "
+                + "from user "
+                + "where firstname LIKE '%"+word+"%' or  lastname LIKE '%"+word+"%'";
+        int counter=0;
+        String people=null;
+         try{
+           
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next())
+               people= rs.getString("firstname") +" "+rs.getString("lastname");
+           
+           while(rs.next() && counter < 5 ){
+               people = people +"\n"+rs.getString("firstname") +" "+rs.getString("lastname");
+               counter++;
+           }
+                         
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return people;
+    }
+    
+    
     private void getMember(int id, Group g){
         
         String sql = "select groupID, user.userID, firstname, lastname "+

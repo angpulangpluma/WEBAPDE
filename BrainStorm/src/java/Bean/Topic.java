@@ -16,10 +16,21 @@ public class Topic {
     
     private String name;
     private Project project;
-    private ArrayList<Idea> ideas;
+    private int topicid;
+    private ArrayList<Idea> ideas = new ArrayList<Idea>();
+    
+    
+    public Topic(int id, String name){
+        this.name= name;
+        this.topicid = id;
+    }
     
     /* Getters */
     
+    public int gettopicid(){
+        return topicid;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +51,10 @@ public class Topic {
     }
     
     /* Setters */
+    
+    public void setTopicID(int id){
+        this.topicid= id;
+    }
     
     public void setName(String name) {
         this.name = name;

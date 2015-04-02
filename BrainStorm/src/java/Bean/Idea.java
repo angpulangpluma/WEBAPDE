@@ -12,33 +12,36 @@ package Bean;
  */
 public class Idea {
     
-    private String description;
-    private Topic topic;
-    private Project project;
-    private Group group;
-    private User user;
+   
+    private int ideaid;
+    private String idea;
+    private Member member;
     private int agreeCount, disagreeCount;
+    private String time;
+    
+    public Idea(int ideaid, String idea,Member user, String time ){
+        this.ideaid= ideaid;
+        this.idea= idea;
+        this.member=user;
+        this.time= time;
+    }
+    
     
     /* Getters */
-    
-    public String getDescription() {
-        return description;
+    public String getTime(){
+        return this.time;
     }
     
-    public Topic getTopic() {
-        return topic;
+    public int getIdeaID(){
+        return this.ideaid;
+    }
+        
+    public String getIdea(){
+        return this.idea;
     }
     
-    public Project getProject() {
-        return project;
-    }
-    
-    public Group getGroup() {
-        return group;
-    }
-    
-    public User getUser() {
-        return user;
+    public Member getUser() {
+        return member;
     }
     
     public int getAgreeCount() {
@@ -51,25 +54,8 @@ public class Idea {
     
     /* Setters */
     
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    public void setTopic(Topic topic) {
-        this.topic = topic;
-    }
-    
-    public void setProject(Project project) {
-        this.project = project;
-    }
-    
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
+
+   
     
     public void setAgreeCount(int agreeCount) {
         this.agreeCount = agreeCount;

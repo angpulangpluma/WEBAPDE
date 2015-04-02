@@ -6,23 +6,21 @@
 
 package Serv;
 
-import Bean.HomePageBean;
-import Bean.UserBean;
 import Connection.HomePageConnection;
-import Connection.UserConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thursday
  */
-public class LoginServlet extends HttpServlet {
+public class AutoComplete extends HttpServlet {
+    
+    private HomePageConnection hpc = new HomePageConnection();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +33,16 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");  
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet AutoComplete</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AutoComplete at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,7 +60,15 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String name="";
+        String suggestions;
+        name = request.getParameter("keyword");
+    
+       suggestions = hpc.getSuggestions(name);
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8"); 
+        response.getWriter().write(suggestions); 
     }
 
     /**
@@ -76,29 +82,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        String user = (String) request.getParameter("emaillogin");
-        String password = (String) request.getParameter("passwordlogin");
-        
-//        System.out.println("user&pass: " + user + "-" + password);
-        
-        HttpSession session = request.getSession();
-        UserBean Bean= new UserBean();
-        if(UserConnection.userquery.isVerify(user, password, Bean)){
-            
-            HomePageBean pagebean = new HomePageBean();
-            HomePageConnection HPC = new HomePageConnection();
-            
-            HPC.getGroups( Bean.getID(), pagebean);
-            
-            
-         
-            
-            session.setAttribute("homepage",pagebean);
-            session.setAttribute("user",Bean);
-            response.sendRedirect("Version 1/Home Page.jsp");
-        }
-   
+        processRequest(request, response);
     }
 
     /**

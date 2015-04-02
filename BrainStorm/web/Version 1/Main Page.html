@@ -1,12 +1,32 @@
 <html>
 <head>
+        
 	<title>Team Nerds</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" media="all" href="Main Style.css"/>
 	<link rel="shortcut icon" href="Tab Icon.png"/>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="brainstorm_func.js"></script>
 	<script>
 	$(document).ready(function(){
+            
+            console.log("HEREEE");
+                var Idea = function (firstName, lastName, topic, idea ) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.topic = topic;
+                this.idea = idea;
+                
+                this.getfirstName = function () {
+                return this.firstName;
+                };
+  
+                };
+            
+                var idea = new Idea("jet","LOL","HAHA","GE");
+                console.log(idea.getfirstName());
+                
+            
 		$("#add").click(function(){
 			window.location.href = "Post Page.html";
 		});
