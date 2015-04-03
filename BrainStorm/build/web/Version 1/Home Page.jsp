@@ -60,7 +60,8 @@
                              
             
                 $('#selectedgroup').text($(groupname).text());     
-                 for(var cont=0; cont< 3; cont++ ){
+                
+                for(var cont=0; cont< 3; cont++ ){
                 $("#grp-projects-page-"+cont).hide();
               
                 $("#grp-members-page-"+cont).hide();
@@ -221,7 +222,7 @@
                               <%  
                             }
                                 %>
-			</div>
+			</div>            
                     <%                                                
                         }
                       %>                                         		                                    

@@ -63,23 +63,28 @@ public class PostIdeaServlet extends HttpServlet {
       String strid = request.getParameter("selected");
       String user = request.getParameter("userid");
       String idea = request.getParameter("ideadesc");
+      String project =  request.getParameter("projid");
+      String topictitle = request.getParameter("topictitle");
+      int intproject = Integer.parseInt(project.trim());
+       
       ProjectConnection pc= new ProjectConnection();
       int id;
       int uid=-1;
+      uid = Integer.parseInt(user.trim());
       if(strid.equals("new")){
           System.out.println("Add new topic");
+          int newtopicid = pc.getMaxProjID();
+          newtopicid++;
+          pc.saveTopic(newtopicid, intproject,topictitle);
+          System.out.println("Saved topic!");
+          pc.saveIdea(newtopicid, uid, idea);
+              
       }else{
           id = Integer.parseInt(strid.trim());
-          uid = Integer.parseInt(user.trim());
           pc.saveIdea(id, uid, idea);
       }
       
-      response.sendRedirect("IdeaPageServlet?id="+uid);
-      
-      
-      
-        
-        
+    response.sendRedirect("IdeaPageServlet?id="+uid);   
     }
 
     /**
@@ -97,20 +102,32 @@ public class PostIdeaServlet extends HttpServlet {
       String user = request.getParameter("userid");
       String idea = request.getParameter("ideadesc");
       ProjectConnection pc= new ProjectConnection();
+      String project =  request.getParameter("projid");
+      String topictitle = request.getParameter("topictitle");
+      int intproject = Integer.parseInt(project.trim());
       int id;
       int uid=-1;
+      uid = Integer.parseInt(user.trim());
+      int newtopicid;
+      
       if(strid.equals("new")){
+          System.out.println("Add new topic");
+          newtopicid = pc.getMaxProjID();
+          System.out.println("newtopicID is "+newtopicid );
+          newtopicid = 1 + newtopicid;
           
+          System.out.println("LATEST ID IS "+newtopicid);
           
-          
-          
+          pc.saveTopic(newtopicid, intproject,topictitle);
+         
+          pc.saveIdea(newtopicid, uid, idea);
+              
       }else{
           id = Integer.parseInt(strid.trim());
-          uid = Integer.parseInt(user.trim());
           pc.saveIdea(id, uid, idea);
       }
       
-      response.sendRedirect("IdeaPageServlet?id="+uid);
+      response.sendRedirect("IdeaPageServlet?id="+intproject);
     }
 
     /**

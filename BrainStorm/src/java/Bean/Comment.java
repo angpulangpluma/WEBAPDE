@@ -13,14 +13,25 @@ package Bean;
 public class Comment {
     
     private String description;
-    private User user;
+    private Member user;
     private Idea idea;
+    private String time;
+    
+    public Comment(Member m, String comment , String time){
+        this.user=m;
+        this.description = comment;
+        this.time= time;
+    }
+    
+    public String getTime(){
+        return this.time;
+    }
     
     public String getCommentDesc(){
         return this.description;
     }
     
-    public User getCommentUser(){
+    public Member getCommentUser(){
         return this.user;
     }
     
@@ -32,7 +43,7 @@ public class Comment {
         this.description = description;
     }
     
-    public void setCommentUser(User user){
+    public void setCommentUser(Member user){
         this.user = user;
     }
     

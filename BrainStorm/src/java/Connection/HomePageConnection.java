@@ -98,7 +98,7 @@ public class HomePageConnection {
          
            while(rs.next()){
                g.addMember(rs.getString(3), rs.getString(4));
-               //g.addProject(rs.getInt(1), rs.getString(3));
+              // g.addProject(rs.getInt(1), rs.getString(3));
                System.out.println("MEMBER OF ID "+id +" "+rs.getString(3));
            }
                          

@@ -6,6 +6,7 @@
 
 package Connection;
 
+import Bean.Comment;
 import Bean.Group;
 import Bean.HomePageBean;
 import Bean.Idea;
@@ -51,6 +52,218 @@ public class ProjectConnection {
             System.out.println(e);
         }
             
+        
+    }
+    
+    public void SaveComment(String userID, String postID, String comment){
+        
+        String sql = "INSERT INTO comment (`userID`, `postID`, `comment`) VALUES ("+userID+","+ postID+", '"+comment +"')";
+        
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           stmt.executeUpdate(sql);
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+    }
+    
+    
+    public Idea getIdeaComments(int id, Member member){
+        
+        String sql ="select ideaID, idea, time,topic.topicID, topicname from idea, topic where idea.topicID = topic.topicID and ideaID = "+id;
+           Idea idea =null;
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+           String dateString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("time"));
+           idea = new Idea(rs.getInt(1), rs.getString(2),member, dateString,rs.getString("topicname"),rs.getInt(4)) ;
+           System.out.println("Idea is "+idea.getIdea());
+           getComments(idea);
+           getRating(idea);
+           
+           }
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return idea;
+    }
+    
+    public void rate(String uid, String tid, String rate){
+        
+        String sql = "select * from rating where userid ="+ uid+" and topicid="+ tid;
+        
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next()){  
+               System.out.println("UPDATING");
+               String sql2 = "UPDATE rating SET rating = "+ rate + " WHERE ratingid= "+ rs.getInt(1);
+               stmt.executeUpdate(sql2);
+           }else{
+               String sql2 = "INSERT INTO rating (userid, topicid, rating) VALUES ("+ uid +","+tid+","+ rate+")";
+               stmt.executeUpdate(sql2);
+           }
+            
+         }
+          catch(Exception e){
+           System.out.println(e);
+        }
+        
+    }
+    
+    private int getIDRating(String uid, String tid){
+        String sql = "select ratingid from rating where userid = "+uid+" and topicid= "+ tid;
+        int id=-1;
+           try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           
+           if(rs.next()){
+                id= rs.getInt(1);
+           }
+                
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        return id;
+    }
+    
+    
+    public int memberRate(int uid, int tid){
+        
+        String sql = "select * from rating where userID = "+uid+" and topicID = "+tid ;
+        int rating=-1;
+        
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next()){
+               rating = rs.getInt(4);
+           }
+                
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return rating;
+        
+    }
+    
+    public int getDisagree(int id){
+        
+        String sql= "select COUNT(*) from rating where topicid= "+id+ " and rating= "+0;
+        int disagree=0;
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           rs.next();
+           disagree = rs.getInt(1);
+           
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return disagree;   
+    }
+    
+    
+    
+    public int getAgree(int id){
+        
+        String sql= "select COUNT(*) from rating where topicid= "+id+ " and rating= "+1;
+        int agree=0;
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           rs.next();
+           agree = rs.getInt(1);
+           
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return agree;   
+    }
+    
+    private void getRating(Idea i){
+        
+        String sql = "select COUNT(ratingid) from rating where rating =1 and topicid= "+i.getIdeaID();
+        String sql2 = "select COUNT(ratingid) from rating where rating =0 and topicid= "+i.getIdeaID();
+          try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           rs.next();
+           
+            i.setAgreeCount(rs.getInt(1));
+           
+           rs=stmt.executeQuery(sql2);
+           rs.next();
+           
+           i.setDisagreeCount(rs.getInt(1));
+          
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        
+    }
+    
+    private void getComments(Idea i){
+        
+        String sql = "select comment, user.userID, firstname , lastname, timestamp "+
+                    "from comment, user "+ 
+                    "where user.userID = comment.userID and postID = " + i.getIdeaID();
+        Comment c;
+        Member m;
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           String dateString;
+          
+           while(rs.next()){
+               m = new Member(rs.getInt(2), rs.getString(3), rs.getString(4));
+               dateString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("timestamp"));
+               c = new Comment(m,rs.getString(1), dateString);
+               System.out.println("Comment is"+ c.getCommentDesc() );
+               i.addComment(c);
+               
+           }
+         
+         }
+          catch(Exception e){
+           e.printStackTrace();
+        }
         
     }
     
@@ -103,9 +316,29 @@ public class ProjectConnection {
             
     }
     
+    public void saveTopic(int id, int projid, String name){
+        
+        String sql="INSERT INTO topic (`topicID`, `projectID`, `topicname`) "+
+                    "VALUES ("+ id +","+ projid+", '"+ name+ "');";
+        
+         try{
+ 
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           stmt.executeUpdate(sql);
+                                            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        
+        
+    }
+    
     public int getMaxProjID(){
         
-        String sql="select MAX(projectID) from project ";
+        String sql="select MAX(topicID) from topic";
          int max=0;
          try{
  

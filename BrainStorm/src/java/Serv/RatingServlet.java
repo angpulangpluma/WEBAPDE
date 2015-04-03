@@ -6,8 +6,6 @@
 
 package Serv;
 
-import Bean.ProjectPageBean;
-import Bean.UserBean;
 import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,13 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thursday
  */
-public class IdeaPageServlet extends HttpServlet {
+public class RatingServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +37,10 @@ public class IdeaPageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IdeaPageServlet</title>");            
+            out.println("<title>Servlet RatingServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IdeaPageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RatingServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,22 +58,7 @@ public class IdeaPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String strid = request.getParameter("id");
-        int id = Integer.parseInt(strid.trim());
-        HttpSession session = request.getSession();
-        UserBean Bean = (UserBean) session.getAttribute("user");
-        
-        ProjectConnection pc = new ProjectConnection();
-        ProjectPageBean ppb = new ProjectPageBean(id);
-        pc.getTopics(ppb);
-        
-        
-        session.setAttribute("project", ppb);
-   
-        response.sendRedirect("Version 1/Main page.jsp");
-        
-        
+        processRequest(request, response);
     }
 
     /**
@@ -90,7 +72,23 @@ public class IdeaPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String userid = request.getParameter("userid");
+        String topicid = request.getParameter("topicid");
+        String rate = request.getParameter("rate");
+        ProjectConnection pc = new ProjectConnection();
+        
+        pc.rate(userid, topicid, rate);
+        int agree = pc.getAgree(Integer.parseInt(topicid.trim()));
+        int disagree = pc.getDisagree(Integer.parseInt(topicid.trim()));
+        
+        
+        response.setContentType("text/plain");  
+        response.setCharacterEncoding("UTF-8"); 
+        response.getWriter().write(agree+","+disagree); 
+        
+        
+        
     }
 
     /**

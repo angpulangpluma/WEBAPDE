@@ -34,6 +34,10 @@
                 this.ideaid = id;
                 this.time = time;
                 
+                this.getideaid = function () {
+                return this.ideaid;
+                };
+                
                 this.getTime = function () {
                 return this.time;
                 };
@@ -83,7 +87,7 @@
                  
                  for(var cont =0; cont < icollection.length; cont++){
                      $("#ideas").append(
-                        "<div class=\"box\"> "+
+                        "<div class=\"box\"  id ="+ icollection[cont].getideaid()+">"+
                         "<div id=\"b-head\">"+
 			"<span id=\"maker\">" + icollection[cont].getfirstName() +" "+ icollection[cont].getlastName()+ "</span>"+
 			"<span id=\"date-time\"> "+icollection[cont].getTime() +"</span>" +
@@ -103,9 +107,7 @@
 		$("#add").click(function(){
 			window.location.href = "Post Page.jsp";
 		});
-		$(".box").click(function(){
-			window.location.href = "Idea Page.html";
-		});
+
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.html";
 		});
@@ -124,6 +126,14 @@
 		});
                 
                 reloadTopics("All Topics");
+                
+                $(".box").click(function(){
+                        var status = $(this).attr('id'); 
+                        console.log(status);
+			window.location.href = "../MainIdeaServlet?id="+status;
+                        
+		});
+                
                 
 	});
 	</script>
@@ -145,7 +155,7 @@
 	</span>
 	
 	<span id="right-header">
-		<button id="user">Marienne Lopez</button>
+		<button id="user"> HUHIUH Marienne Lopez</button>
 		<span id="line"></span>
 		<button id="home">Home</button>
 		<span id="line"></span>
@@ -190,7 +200,7 @@
 			<span id="date-time">1:23pm</span>
 			<span id="b-topic">HTML</span>
 		</div>
-    -->
+   -->
     <!--<div id="title">This is an Idea</div>-->
     <!--
     <div id="content">These sentences are stuffs about the idea. These sentences are stuffs about the idea. 

@@ -18,7 +18,8 @@ public class Topic {
     private Project project;
     private int topicid;
     private ArrayList<Idea> ideas = new ArrayList<Idea>();
-    
+    private int agree;
+    private int disagree;
     
     public Topic(int id, String name){
         this.name= name;
@@ -51,6 +52,14 @@ public class Topic {
     }
     
     /* Setters */
+    
+    public void setAgree(int i){
+        this.agree=i;
+    }
+    
+    public void setDisagree(int i){
+        this.disagree=i;
+    }
     
     public void setTopicID(int id){
         this.topicid= id;

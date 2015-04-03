@@ -6,6 +6,8 @@
 
 package Bean;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author student
@@ -18,14 +20,51 @@ public class Idea {
     private Member member;
     private int agreeCount, disagreeCount;
     private String time;
+    private ArrayList<Comment> comments;
+    private String topicname;
+   private int topicid;
+    public Idea(int ideaid,String idea, String time){
+        this.ideaid= ideaid;
+        this.idea= idea;
+        this.time= time;   
+        comments = new ArrayList<Comment>();
+    }
     
-    public Idea(int ideaid, String idea,Member user, String time ){
+    public Idea(int ideaid, String idea,Member user, String time,String topicname, int topicid ){
         this.ideaid= ideaid;
         this.idea= idea;
         this.member=user;
         this.time= time;
+         comments = new ArrayList<Comment>();
+         this.topicname= topicname;
+         this.topicid=topicid;
+    }
+   
+      public Idea(int ideaid, String idea,Member user, String time){
+        this.ideaid= ideaid;
+        this.idea= idea;
+        this.member=user;
+        this.time= time;
+         comments = new ArrayList<Comment>();
+   
     }
     
+    
+    public int getTopicid(){
+        return this.topicid;
+    }
+      
+    public String getTopicname(){
+        return this.topicname;
+    }
+    
+    public ArrayList<Comment> getComments(){
+        return this.comments;
+    }
+    
+    public void addComment(Comment i){
+        this.comments.add(i);
+    }
     
     /* Getters */
     public String getTime(){

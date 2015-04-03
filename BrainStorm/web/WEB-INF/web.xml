@@ -36,6 +36,18 @@
         <servlet-name>PostIdeaServlet</servlet-name>
         <servlet-class>Serv.PostIdeaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MainIdeaServlet</servlet-name>
+        <servlet-class>Serv.MainIdeaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentServlet</servlet-name>
+        <servlet-class>Serv.CommentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RatingServlet</servlet-name>
+        <servlet-class>Serv.RatingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>PostIdeaServlet</servlet-name>
         <url-pattern>/PostIdeaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainIdeaServlet</servlet-name>
+        <url-pattern>/MainIdeaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentServlet</servlet-name>
+        <url-pattern>/CommentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RatingServlet</servlet-name>
+        <url-pattern>/RatingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

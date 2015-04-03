@@ -6,7 +6,9 @@
 
 package Serv;
 
-import Bean.ProjectPageBean;
+import Bean.Idea;
+import Bean.IdeaPageBean;
+import Bean.Member;
 import Bean.UserBean;
 import Connection.ProjectConnection;
 import java.io.IOException;
@@ -17,11 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  *
  * @author Thursday
  */
-public class IdeaPageServlet extends HttpServlet {
+public class MainIdeaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +43,10 @@ public class IdeaPageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IdeaPageServlet</title>");            
+            out.println("<title>Servlet MainIdeaServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet IdeaPageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MainIdeaServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,21 +64,22 @@ public class IdeaPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //this is the idea ID
+        String strideaid = request.getParameter("id");
+       
+        int ideaid = Integer.parseInt(strideaid.trim());
         
-        String strid = request.getParameter("id");
-        int id = Integer.parseInt(strid.trim());
-        HttpSession session = request.getSession();
-        UserBean Bean = (UserBean) session.getAttribute("user");
+        HttpSession ses = request.getSession();
+        UserBean ub = (UserBean) ses.getAttribute("user");
         
         ProjectConnection pc = new ProjectConnection();
-        ProjectPageBean ppb = new ProjectPageBean(id);
-        pc.getTopics(ppb);
+        Member m = new Member(ub.getID(), ub.getFirstName(), ub.getLastName());
+        Idea idea = pc.getIdeaComments(ideaid,m);
         
-        
-        session.setAttribute("project", ppb);
-   
-        response.sendRedirect("Version 1/Main page.jsp");
-        
+        IdeaPageBean idb = new IdeaPageBean(idea);
+        idb.setRating(pc.memberRate( idea.getUser().getId() ,idea.getIdeaID()));
+        ses.setAttribute("idea",idb);
+        response.sendRedirect("Version 1/Idea Page.jsp");
         
     }
 

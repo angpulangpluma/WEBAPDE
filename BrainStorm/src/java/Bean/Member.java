@@ -16,12 +16,22 @@ public class Member {
     private String lname;
     private int id;
     
+        public Member(String fname,String lname){
+        this.id=id;
+        this.fname = fname;
+        this.lname =lname;
+    }
+    
+    
     public Member(int id, String fname,String lname){
         this.id=id;
         this.fname = fname;
         this.lname =lname;
     }
     
+    public int getId(){
+        return this.id;
+    }
     public String getFirstName(){
         return this.fname;
     }
