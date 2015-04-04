@@ -6,6 +6,8 @@
 
 package Serv;
 
+import Bean.UserBean;
+import Connection.HomePageConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Thursday
  */
-public class LogOutServlet extends HttpServlet {
+public class ChangePassServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +39,10 @@ public class LogOutServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogOutServlet</title>");            
+            out.println("<title>Servlet ChangePassServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogOutServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangePassServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,12 +60,7 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession();
-        
-        session.removeAttribute("user");
-        response.sendRedirect("Version 1/login.jsp");
-        
+        processRequest(request, response);
     }
 
     /**
@@ -77,7 +74,18 @@ public class LogOutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session = request.getSession();
+        UserBean Bean = (UserBean) session.getAttribute("user");
+        String pass = request.getParameter("pass");
+        session.setAttribute("user", Bean);
+        HomePageConnection hpc = new HomePageConnection();
+        hpc.changePass( Bean.getID(),pass);
+        
+        
+        response.sendRedirect("ToHomePageServlet");
+        
+        
     }
 
     /**

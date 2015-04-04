@@ -109,7 +109,7 @@
 		});
 
 		$("#user").click(function(){
-			window.location.href = "Edit Profile Page.html";
+			window.location.href = "Edit Profile Page.jsp";
 		});
 		$("#home").click(function(){
 			window.location.href = "Home Page.html";
@@ -119,7 +119,7 @@
 			window.location.href = "Log In and Sign Up.html";
 		});
 		$("#icon").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#grp-name").click(function(){
 			window.location.href = "Main Page.html";

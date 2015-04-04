@@ -62,10 +62,13 @@ public class AutoComplete extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         String name="";
-        String suggestions;
+        String suggestions="";
         name = request.getParameter("keyword");
     
        suggestions = hpc.getSuggestions(name);
+               if(suggestions==null){
+            suggestions="";
+        }
         response.setContentType("text/plain");  
         response.setCharacterEncoding("UTF-8"); 
         response.getWriter().write(suggestions); 

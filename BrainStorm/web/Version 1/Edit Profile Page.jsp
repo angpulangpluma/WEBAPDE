@@ -18,11 +18,36 @@
 			window.location.href = "Log In and Sign Up.html";
 		});
 		$("#icon").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#grp-name").click(function(){
 			window.location.href = "Main Page.html";
 		});
+                
+                $("#savename").click(function(){
+                    console.log("HERE");
+                    console.log($("#lastname").val().length);
+                    if( $("#lastname").val().length===0 || $("#firstname").val().length===0 )
+                           alert("Please put details first");
+                     else $("#nameform").submit()       
+                            
+                });
+                
+                $("#savepassword").click(function(){
+                    
+            
+                     if ( $("#pas").val() !== $("#pas2").val() ){
+                         alert("Password does not match");
+                     } else if( $("#pas").val().length ===0  ){
+                         alert("Input password");
+                     }else if( $("#pas").val() === $("#pas2").val()){
+                         $("#passform").submit()   
+                     }      
+                            
+                });
+                
+                
+                
 	});
 	</script>
 </head>
@@ -51,13 +76,19 @@
 </div>
 
 <div id="center-content">
-	<span id="name">Marienne Lopez</span><br/><br/><br/>
-	Email<br/><input class="inputs" type="text" placeholder="Email" value="marienne.lopez@gmail.com"><br/><br/>
-	First Name</br><input type="text" class="inputs" placeholder="First Name" value="Marienne"><br/><br/>
-	Last Name<br/><input type="text" class="inputs" placeholder="Last Name" value="Lopez"><br/><br/>
-	Password<br/><input type="password" class="inputs" placeholder="Password should be chuchu" value="1234567890"><br/><br/>
-	Re-enter Password<br/><input type="password" class="inputs" placeholder="Re-enter Password" value="1234567890"><br/><br/>
-	<button id="save">Save</button>
+	
+        <form id="nameform" action="../ChangeNameServlet" method="POST">
+        First Name</br><input name="fname" type="text" class="inputs" placeholder="First Name" id="firstname"><br/><br/>
+        Last Name<br/><input name ="lname" type="text" class="inputs" placeholder="Last Name" id="lastname"><br/><br/>
+        </form>
+    
+        <button id="savename">Save Name</button>
+        <form id="passform" action="../ChangePassServlet" method="POST" >
+        Password<br/><input id="pas" name="pass" type="password" class="inputs" placeholder="Password should be chuchu" value=""><br/><br/>
+        Re-enter Password<br/><input id="pas2" type="password" class="inputs" placeholder="Re-enter Password" value=""><br/><br/>
+        </form>
+        <button id="savepassword" >Save Password</button>
+        
 </div>
 
 <!---

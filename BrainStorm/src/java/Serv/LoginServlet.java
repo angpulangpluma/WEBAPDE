@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Serv;
 
 import Bean.HomePageBean;
@@ -41,7 +40,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -76,29 +75,25 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         String user = (String) request.getParameter("emaillogin");
         String password = (String) request.getParameter("passwordlogin");
-        
+
 //        System.out.println("user&pass: " + user + "-" + password);
-        
         HttpSession session = request.getSession();
-        UserBean Bean= new UserBean();
-        if(UserConnection.userquery.isVerify(user, password, Bean)){
-            
+        UserBean Bean = new UserBean();
+        if (UserConnection.userquery.isVerify(user, password, Bean)) {
+
             HomePageBean pagebean = new HomePageBean();
             HomePageConnection HPC = new HomePageConnection();
-            
-            HPC.getGroups( Bean.getID(), pagebean);
-            
-            
-         
-            
-            session.setAttribute("homepage",pagebean);
-            session.setAttribute("user",Bean);
+
+            HPC.getGroups(Bean.getID(), pagebean);
+
+            session.setAttribute("homepage", pagebean);
+            session.setAttribute("user", Bean);
             response.sendRedirect("Version 1/Home Page.jsp");
         }
-   
+
     }
 
     /**

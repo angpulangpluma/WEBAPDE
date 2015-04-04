@@ -48,6 +48,30 @@
         <servlet-name>RatingServlet</servlet-name>
         <servlet-class>Serv.RatingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddGroupServlet</servlet-name>
+        <servlet-class>Serv.AddGroupServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ToHomePageServlet</servlet-name>
+        <servlet-class>Serv.ToHomePageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AutoCompleteGroup</servlet-name>
+        <servlet-class>Serv.AutoCompleteGroup</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>Serv.SearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeNameServlet</servlet-name>
+        <servlet-class>Serv.ChangeNameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <servlet-class>Serv.ChangePassServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -95,6 +119,30 @@
     <servlet-mapping>
         <servlet-name>RatingServlet</servlet-name>
         <url-pattern>/RatingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddGroupServlet</servlet-name>
+        <url-pattern>/AddGroupServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToHomePageServlet</servlet-name>
+        <url-pattern>/ToHomePageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AutoCompleteGroup</servlet-name>
+        <url-pattern>/AutoCompleteGroup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeNameServlet</servlet-name>
+        <url-pattern>/ChangeNameServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassServlet</servlet-name>
+        <url-pattern>/ChangePassServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
