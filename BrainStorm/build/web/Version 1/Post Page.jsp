@@ -24,6 +24,11 @@
             
 	 $(document).ready(function(){
 		$("#newtopic").hide();
+                
+                if($("#select-popup").find(":selected").val() === "new")
+                    $("#newtopic").show();
+                
+                
 		$("#select-popup").change(function(){
 			if($("#select-popup").find(":selected").val() === "new")
 				$("#newtopic").show();

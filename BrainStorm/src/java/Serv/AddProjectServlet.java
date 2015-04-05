@@ -6,7 +6,6 @@
 
 package Serv;
 
-import Bean.UserBean;
 import Connection.HomePageConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,13 +13,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Thursday
  */
-public class AddGroupServlet extends HttpServlet {
+public class AddProjectServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +37,10 @@ public class AddGroupServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddGroupServlet</title>");            
+            out.println("<title>Servlet AddProjectServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddGroupServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddProjectServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,22 +58,18 @@ public class AddGroupServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       // processRequest(request, response);
-        
-      String groupname = request.getParameter("name");
-      HttpSession session = request.getSession();
-      UserBean Bean = (UserBean) session.getAttribute("user");
-      HomePageConnection hpc =  new HomePageConnection();
-      int max = hpc.getMaxGroupID();
-      max ++;
        
-       hpc.saveGroup(max, Bean.getID(), groupname);
-       hpc.saveMember(Bean.getID(), max);
-       String s = max+"";
-       
+       String groupid = request.getParameter("groupid");
+       String projname =  request.getParameter("name");
+        System.out.println(groupid +" "+projname);
+        HomePageConnection hpc = new HomePageConnection();
+        hpc.saveProject(groupid, projname);
+       int max = hpc.getmaxProjectID();
+        String strmax = max+"";
         response.setContentType("text/plain");  
         response.setCharacterEncoding("UTF-8"); 
-        response.getWriter().write(s);
+        response.getWriter().write(strmax); 
+        
         
     }
 

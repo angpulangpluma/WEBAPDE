@@ -49,6 +49,8 @@ public class HomePageConnection {
 
     }
 
+  
+    
     public void saveMember(int uid, int gid) {
 
         String sql = "INSERT INTO `brainstorm`.`groupmembers` (`groupID`, `userID`) VALUES ('" + gid + "', '" + uid + "')";
@@ -66,6 +68,45 @@ public class HomePageConnection {
 
     }
 
+    public int getmaxProjectID(){
+        String sql=  "select MAX(projectID) from project" ;
+        int max=0;
+        try {
+
+            Connection con = DataBase.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            if(rs.next()){
+                max= rs.getInt(1);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("ERROR AY NASA GETMAX");
+            System.out.println(e);
+        }
+        
+        return max;
+    }
+    
+    public void saveProject(String id, String name){
+        
+        String sql="INSERT INTO project (`groupID`, `projectname`) VALUES ("+ id+ ", '"+ name +"');";
+        try {
+
+            Connection con = DataBase.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs;
+            stmt.executeUpdate(sql);
+
+        } catch (Exception e) {
+            System.out.println("ERROR AY NASA SAVEPROJ");
+            System.out.println(e);
+        }
+        
+        
+    }
+    
     public void saveGroup(int gid, int uid, String gname) {
 
         String sql = "INSERT INTO groups (`groupID`, `groupName`, `leaderID`) VALUES (" + gid + ", '" + gname + "'," + uid + ");";

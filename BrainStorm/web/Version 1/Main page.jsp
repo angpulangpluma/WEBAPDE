@@ -35,7 +35,7 @@
                 this.time = time;
                 this.agree=agree;
                 this.disagree=disagree;
-                this.commentnum = comments
+                this.commentnum = comments;
                 
                 this.getCommentNum = function () {
                 return this.commentnum;
@@ -98,7 +98,7 @@
                 
             function reloadTopics(topic) {
              
-             if(topic == "All Topics"){
+             if(topic === "All Topics"){
                  
                  for(var cont =0; cont < icollection.length; cont++){
                      $("#ideas").append(

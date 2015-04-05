@@ -72,6 +72,10 @@
         <servlet-name>ChangePassServlet</servlet-name>
         <servlet-class>Serv.ChangePassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <servlet-class>Serv.AddProjectServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>ChangePassServlet</servlet-name>
         <url-pattern>/ChangePassServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectServlet</servlet-name>
+        <url-pattern>/AddProjectServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

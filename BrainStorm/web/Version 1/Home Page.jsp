@@ -40,6 +40,11 @@
                 var groupname = "#" + currGroup;
                 var search;
                 var sugg = [];
+                var groupids=[];
+                
+               <% for (int i = 0; i < groups.size(); i++) { %>
+                groupids[<%=i%>] = <%=groups.get(i).getID()%> ;
+                <%}%>
 /*
                 $("#search").keyup(function() {
                     search = $("#search").val();
@@ -134,7 +139,7 @@
                     else if (addgroupflag === 0) {
 
 
-                        if ($("#newgroupname").val().length == 0) {
+                        if ($("#newgroupname").val().length === 0) {
                             alert("Please enter groupname");
                         } else {
                             var newgroupname = $("#newgroupname").val();
@@ -143,7 +148,10 @@
                             $("#newgroupname").hide();
                             addgroupflag = 1;
                             $.get('../AddGroupServlet', {name: newgroupname}, function(responseText) {
-
+                                
+                                    var num3 = responseText;
+                                   groupids [groupids.length] = num3;
+                                    console.log("NEW NUM IS "+groupids );
                                 $("#grp-list").append(
                                         "<option id=\"" + numberofgroups + "\" class=\"group\" value=\"" + numberofgroups + "\">" + newgroupname +
                                         " </option> "
@@ -179,8 +187,7 @@
                                     currGroup = $("#grp-list").val();
                                     console.log("CURR GROUP IS " + currGroup);
                                     groupname = "#" + currGroup;
-
-
+                                    
                                     $('#selectedgroup').text($(groupname).text());
                                     // document.getElementById("selectedgroup").textContent=          
                                 });
@@ -246,6 +253,27 @@
                 });
                
                 
+                 $("#addproject").click(function() {
+                        var newproject = $("#newproject").val();
+                        
+                        if(newproject.length ===0 ){
+                        alert("Please Entername first");
+                        }
+                        else if( groupids.length ===0  ){
+                        alert("Create Group First");
+                        }
+                        else{
+                       $.get('../AddProjectServlet', { groupid :groupids[currGroup],name:newproject}, function(responseText) {
+                           var maxid = responseText;
+                
+                           $("#grp-projects-page-"+currGroup).append(" <div class=\"grp-box\"><a href=\"../IdeaPageServlet?id="+maxid+"\"class=\"proj-name\">"+ newproject+"</a></div>");
+                        });
+        
+                        }
+                        
+                        
+                    });
+                
                 
 
             });
@@ -289,12 +317,13 @@
                 <br/>
                 <span class ="titles" id="addgroup" >Add Group</span> <input id="newgroupname" type="text" >
                 <div id="groups">
-
+                    
                     <select id="grp-list" size="<%=groups.size()%>">
 
                         <%
                             //System.out.println("<--->" + groups.size());
                             for (int i = 0; i < groups.size(); i++) {
+                               
                         %>                  
                         <option id="<%=i%>" class="group" value="<%=i%>"><%=groups.get(i).getGroupName()%>
                         </option>          
@@ -311,9 +340,10 @@
                             <a id="grp-projects">Projects</a> <span id="grp-line"></span>
                             <a id="grp-members">Members</a>
                         </div>
-
+                        
+                      <span id="addproject"> Add Project </span> <input type="text" id="newproject">
+                        
                         <!-- when 'projects' tab is clicked -->
-
 
                         <%
                             ArrayList<Member> members;
