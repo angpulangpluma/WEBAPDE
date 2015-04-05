@@ -26,13 +26,28 @@
         <script>
 	$(document).ready(function(){
             
-                var Idea = function (firstName, lastName, topic, idea , id, time) {
+                var Idea = function (firstName, lastName, topic, idea , id, time , agree, disagree,comments) {
                 this.firstName = firstName;
                 this.lastName = lastName;
                 this.topic = topic;
                 this.idea = idea;
                 this.ideaid = id;
                 this.time = time;
+                this.agree=agree;
+                this.disagree=disagree;
+                this.commentnum = comments
+                
+                this.getCommentNum = function () {
+                return this.commentnum;
+                };
+                
+                this.getAgree = function () {
+                return this.agree;
+                };
+                
+                this.getDisagree = function () {
+                return this.disagree;
+                };
                 
                 this.getideaid = function () {
                 return this.ideaid;
@@ -74,7 +89,7 @@
         %>
             
             icollection[ icollection.length ] = new Idea( "<%=ideas.get(cnt).getUser().getFirstName()%>" ,"<%=ideas.get(cnt).getUser().getLastName()%>" , 
-            "<%=tpc.getName()%>", "<%=ideas.get(cnt).getIdea()%>", <%=ideas.get(cnt).getIdeaID()%>, "<%=ideas.get(cnt).getTime()%>"  );
+            "<%=tpc.getName()%>", "<%=ideas.get(cnt).getIdea()%>", <%=ideas.get(cnt).getIdeaID()%>, "<%=ideas.get(cnt).getTime()%>",<%=ideas.get(cnt).getAgreeCount()%> ,<%=ideas.get(cnt).getDisagreeCount()%>,<%=ideas.get(cnt).getComments().size()%>);
                
         <%
             }        
@@ -95,9 +110,9 @@
                         "</div>" +
                         "<div id=\"content\">"+ icollection[cont].getIdea()+"</div>" +
                         "<div id=\"b-footer\">"+
-			"<span id=\"comments\"> 2</span> Comments"+
-			"<span id=\"agree\">5</span> Agrees"+
-			"<span id=\"disagree\">3</span> Disagrees"+
+			"<span id=\"comments\">"+icollection[cont].getCommentNum()+"</span> Comments"+
+			"<span id=\"agree\">"+ icollection[cont].getAgree()+"</span> Agrees"+
+			"<span id=\"disagree\">"+icollection[cont].getDisagree()+"</span> Disagrees"+
                         "</div>"
                           );
                     }  //end of loop     

@@ -287,6 +287,11 @@ public class ProjectConnection {
              m = new Member(rs.getInt(3),rs.getString(4), rs.getString(5));
              dateString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp("time"));
              idea = new Idea(rs.getInt(1), rs.getString(2),m ,dateString );
+             
+             idea.setAgreeCount(getAgree(idea.getIdeaID()));
+             idea.setDisagreeCount(getDisagree(idea.getIdeaID()));
+             getComments(idea);
+             
              System.out.println("Ideas are "+ idea.getIdea() );
              topic.addIdea(idea);
                
