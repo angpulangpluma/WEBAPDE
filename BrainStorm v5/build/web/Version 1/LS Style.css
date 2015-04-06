@@ -1,0 +1,107 @@
+@font-face {
+	font-family: brainstorm;
+	src: url("Lato-Black.ttf");
+}
+
+@font-face {
+	font-family: welcome;
+	src: url("Lato-Light.ttf");
+}
+
+body {
+	background-color: #F5F5F5;
+	overflow: hidden;
+	font-family: helvetica;
+	font-size: 15;
+	font-weight: bold;
+	color: #ff6666;
+}
+
+#forms {
+	height: 400px;
+	width: 290px;
+}
+
+/*
+#bulb1 {
+	position: absolute;
+	top: -30%;
+	left: -15%;
+	z-index: -1;
+}
+
+#bulb2 {
+	position: absolute;
+	top: -30%;
+	right: -15%;
+	z-index: -1;
+}
+*/
+
+#header {
+	position: relative;
+	left: -8px;
+	top: -8px;
+	background-color: #ff6666;
+	height: 19%;
+	width: 101.2%;
+	text-align: center;
+	border-bottom: 1px solid #ff6666;
+	-webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .5);	
+}
+
+#name {
+	position: relative;
+	top: 12%;
+	font-family: brainstorm;
+	font-size: 40;
+	color: white;
+}
+
+#welcome {
+	position: relative;
+	top: 12%;
+	font-family: welcome;
+	font-size: 35;
+	letter-spacing: 1px;
+	color: white;
+}
+
+#login, #signup {
+	float: right;
+	background-color: #EEEEEE;
+	padding: 10px;
+	margin: 10px;
+	border: 0px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, .2);	
+}
+
+#signup-header {
+	color: gray;
+	font-size: 15;
+	font-weight: normal;
+}
+
+input {
+	height: 25px;
+	width: 250px;
+	color: black;
+	background-color: white;
+	border: .5px solid #E0E0E0;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+	text-indent: 5px;
+	margin-bottom: -8px;
+}
+
+.buttons {
+	float: right;
+	color: white;
+	background-color: #ff6666;
+	height: 23px;
+	width: 70px;
+	border: 0px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+}
