@@ -15,7 +15,9 @@ import java.util.ArrayList;
 public class HomePageBean {
  
     private ArrayList<Group> groups= new ArrayList<Group>();
+    private ArrayList<Notification> notifs;
    
+    
     public void addGroup(int id, String name){
         groups.add(new Group(id,name));
     }
