@@ -72,6 +72,48 @@ public class ProjectConnection {
     }
     
     
+    public int getGroupID(int topicid){
+        String sql ="select groupID " +
+                    "from topic, project " +
+                    "where project.projectID = topic.projectID " +
+                    "and topicID = "+ topicid;
+        int gid=-1;
+         try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+               gid = rs.getInt(1);
+           }
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return gid;
+    }
+    
+    public String getTopicName(String topicID){
+        
+        String sql = "select topicName from topic where topicID = "+ topicID;
+        String topicname=null;
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+               topicname = rs.getString(1);
+           }
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return topicname;
+    }
+    
     public Idea getIdeaComments(int id, Member member){
         
         String sql ="select ideaID, idea, time,topic.topicID, topicname from idea, topic where idea.topicID = topic.topicID and ideaID = "+id;

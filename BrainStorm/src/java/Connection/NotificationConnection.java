@@ -9,9 +9,11 @@ package Connection;
 import Bean.Group;
 import Bean.HomePageBean;
 import Bean.Member;
+import Bean.Notification;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +21,41 @@ import java.util.ArrayList;
  * @author Thursday
  */
 public class NotificationConnection {
+        
     
+        public ArrayList<Notification> getNotifs(int userid) {
+       
+        ArrayList<Notification> notifs;
+        notifs = new ArrayList<Notification>();
+        
+        String sql = "select notif, time, firstname, lastname,userID from notification , user "+
+                    "where userID = notification.from "+
+                    "and goingTo = " +userid+
+                    " order by time DESC";
+
+        try {
+         
+            Connection con = DataBase.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            Member m;
+            int counter=0;
+            String dateString;
+            while (rs.next() && counter < 5) {
+               m = new Member(rs.getInt(5), rs.getString(3),rs.getString(4));
+               dateString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp(2));
+               notifs.add(new Notification(rs.getString(1), dateString,m ));
+               System.out.println(rs.getString(1));
+               counter++;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return notifs;
+        
+    }
     
         public ArrayList<Member> getGroupmates(int userid,int groupid) {
        
@@ -51,6 +87,7 @@ public class NotificationConnection {
     }
     
         
+  
     private int getMaxNotifID(){
         
         String sql = "select max(notifID) from notification";

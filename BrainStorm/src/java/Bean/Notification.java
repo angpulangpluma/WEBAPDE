@@ -16,10 +16,24 @@ public class Notification {
     private String time;
     private String date;
     private Topic topic;
-    private User user;
+    private Member from;
     private String type;
+    private String notif;
     
-    private String getNotifTime(){
+    
+    public Notification(String notif, String time, Member m){
+        
+    this.time=time;
+    this.notif = notif;
+    this.from=m;
+
+    }
+    
+    public String getNotif(){
+        return this.notif;
+    }
+    
+    public String getNotifTime(){
         return time;
     }
     
@@ -31,11 +45,10 @@ public class Notification {
         return topic;
     }
     
-    private User getNotifUser(){
-        return user;
+    public Member getNotifUser(){
+        return from;
     }
-    
-    private String getNotifType(){
+    public String getNotifType(){
         return type;
     }
     
@@ -51,9 +64,6 @@ public class Notification {
         this.topic = topic;
     }
     
-    private void setNotifUser(User user){
-        this.user = user;
-    }
     
     private void setNotifType(String type){
         this.type = type;

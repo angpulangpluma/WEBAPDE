@@ -6,9 +6,12 @@
 
 package Serv;
 
+import Bean.Member;
+import Connection.NotificationConnection;
 import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -108,7 +111,10 @@ public class PostIdeaServlet extends HttpServlet {
       int id;
       int uid=-1;
       uid = Integer.parseInt(user.trim());
-      int newtopicid;
+      int newtopicid;      
+      NotificationConnection nc= new NotificationConnection();
+        int groupid;
+      ArrayList<Member> members;
       
       if(strid.equals("new")){
           System.out.println("Add new topic");
@@ -119,13 +125,19 @@ public class PostIdeaServlet extends HttpServlet {
           System.out.println("LATEST ID IS "+newtopicid);
           
           pc.saveTopic(newtopicid, intproject,topictitle);
-         
           pc.saveIdea(newtopicid, uid, idea);
+          groupid = pc.getGroupID(newtopicid);
+         members = nc.getGroupmates(uid, groupid);
+        //  nc.saveNotif(uid, groupid,"posted a new idea", members);
               
       }else{
           id = Integer.parseInt(strid.trim());
           pc.saveIdea(id, uid, idea);
+          
       }
+      
+      
+      
       
       response.sendRedirect("IdeaPageServlet?id="+intproject);
     }

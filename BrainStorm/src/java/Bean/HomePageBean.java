@@ -32,5 +32,12 @@ public class HomePageBean {
         return this.groups;
     }
     
+    public ArrayList<Notification> getNotifs(){
+        return this.notifs;
+        
+    }
+    public void setNotification(ArrayList<Notification> n){
+        this.notifs=n;
+    }
     
 }

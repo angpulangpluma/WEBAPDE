@@ -1,3 +1,4 @@
+<%@page import="Bean.Notification"%>
 <%@page import="Bean.Member"%>
 <%@page import="Bean.Project"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,6 +33,7 @@
             UserBean Bean = (UserBean) session.getAttribute("user");
             HomePageBean pagebean = (HomePageBean) session.getAttribute("homepage");
             ArrayList<Group> groups = pagebean.getGroups();
+            ArrayList<Notification> notifs = pagebean.getNotifs();
             int gnumber = groups.size();
 
         %>      
@@ -401,15 +403,19 @@
                 <span class="titles">Notifications</span>
                 <div id="notifs">
                     <div class="box">
+                    <%for(Notification notif:notifs ){ %>    
                         <div id="content">
-                            <span id="notif-user">Hannah Sibayan</span>
-                            posted an idea in
-                            <span id="notif-proj">WEBAPP</span> 
-                            under 
-                            <span id="notif-topic">HTML</span>
+                            <span id="notif-user"><%=notif.getNotifUser().getFirstName()%> <%=notif.getNotifUser().getLastName()%></span>
+                            <%=notif.getNotif()%>
+                            <span id="notif-proj"></span> 
+                            <span id="notif-topic"></span>
                         </div>
-                        <div id="date-time">1:23pm</div>
+                        <div id="date-time"><%=notif.getNotifTime()%></div>
+                    <%} %>
+                    
                     </div>
+                    
+                    <!--
                     <div class="box">
                         <div id="content">
                             <span id="notif-user">Jet Virtusio</span>
@@ -420,6 +426,7 @@
                         </div>
                         <div id="date-time">1:22pm</div>
                     </div>
+                    -->
                 </div>
 
             </div>
