@@ -8,7 +8,8 @@
          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" media="all" href="Post Style.css"/>
 	<link rel="shortcut icon" href="Tab Icon.png"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+        <script type="text/javascript" src="jquery.min.js"></script>
 	<script type="text/javascript" src="brainstorm_func.js"></script>
 	<script>
             
@@ -42,14 +43,14 @@
 			window.location.href = "Edit Profile Page.html";
 		});
 		$("#home").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
-			window.location.href = "Log In and Sign Up.html";
+                    window.location.href = "../LogOutServlet";
 		});
 		$("#icon").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#grp-name").click(function(){
 			window.location.href = "Main Page.html";

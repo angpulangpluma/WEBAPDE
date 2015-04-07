@@ -1,21 +1,45 @@
+<%@page import="Bean.Member"%>
+<%@page import="Bean.Project"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Bean.Group"%>
+<%@page import="Bean.HomePageBean"%>
+<%@page import="Bean.UserBean"%>
 <html>
 <head>
 	<title>Brainstorm</title>
 	<link rel="stylesheet" type="text/css" media="all" href="Edit Profile Style.css"/>
 	<link rel="shortcut icon" href="Tab Icon.png"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+        <script type="text/javascript" src="jquery.min.js"></script>
+        
+        <!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+        <script type="text/javascript" src="jquery-latest.js"></script>
+
+        <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
+        <link rel="stylesheet" type="text/css" media="all" href="jquery-ui-1.11.4.css"/>
+        
+        <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
+        <script type="text/javascript" src="jquery-1.10.2.js"></script>
+        
+        <!--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>-->
+        <script type="text/javascript" src="jquery-ui.1.11.4.js"></script>
+        
 	<script type="text/javascript" src="brainstorm_func.js"></script>
+        
+        <%
+            UserBean Bean = (UserBean) session.getAttribute("user");
+        %>
 	<script>
 	$(document).ready(function(){
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.html";
 		});
 		$("#home").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
-			window.location.href = "Log In and Sign Up.html";
+			window.location.href = "../LogOutServlet";
 		});
 		$("#icon").click(function(){
 			window.location.href = "../ToHomePageServlet";
@@ -61,7 +85,7 @@
 	</span>
 	
 	<span id="right-header">
-		<button id="user">Marienne Lopez</button>
+            <button id="user"><%=Bean.getFirstName()%> <%=Bean.getLastName()%></button>
 		<span id="line"></span>
 		<button id="home">Home</button>
 		<span id="line"></span>
@@ -78,8 +102,8 @@
 <div id="center-content">
 	
         <form id="nameform" action="../ChangeNameServlet" method="POST">
-        First Name</br><input name="fname" type="text" class="inputs" placeholder="First Name" id="firstname"><br/><br/>
-        Last Name<br/><input name ="lname" type="text" class="inputs" placeholder="Last Name" id="lastname"><br/><br/>
+            First Name</br><input name="fname" type="text" class="inputs" placeholder="<%=Bean.getFirstName()%>" id="firstname"><br/><br/>
+            Last Name<br/><input name ="lname" type="text" class="inputs" placeholder="<%=Bean.getLastName()%>" id="lastname"><br/><br/>
         </form>
     
         <button id="savename">Save Name</button>

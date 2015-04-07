@@ -4,7 +4,8 @@
 	<link rel="stylesheet" type="text/css" media="all" href="LS Style.css"/>
 	<link rel="shortcut icon" href="Tab Icon.png"/>
 	<script type="text/javascript" src="brainstorm_func.js"></script>
-	<script src="http://code.jquery.com/jquery-2.1.3.min.js"/></script>
+	<!--<script src="http://code.jquery.com/jquery-2.1.3.min.js"/></script>-->
+        <script type="text/javascript" src="jquery-2.1.3.min.js"></script>
 	<script>
 	$(document).ready(function(){
 		/*$('.buttons').click(function(){

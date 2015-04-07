@@ -3,14 +3,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Bean.Idea"%>
 <%@page import="Bean.IdeaPageBean"%>
+<%@page import="Bean.UserBean"%>
 <html>
 <head>
 	<title>Team Nerds</title>
 	<link rel="stylesheet" type="text/css" media="all" href="Idea Style.css"/>
 	<link rel="shortcut icon" href="Tab Icon.png"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+        <script type="text/javascript" src="jquery.min.js"></script>
 	<script>
           <%
+              UserBean u = (UserBean) session.getAttribute("user");
               session = request.getSession();
               IdeaPageBean Bean = (IdeaPageBean)session.getAttribute("idea");
               Idea idea = Bean.getIdea();
@@ -27,10 +30,11 @@
 			window.location.href = "Edit Profile Page.jsp";
 		});
 		$("#home").click(function(){
-			window.location.href = "Home Page.html";
+			window.location.href = "../ToHomePageServlet";
 		});
 		$("#logout").click(function(){
-			window.location.href = "Log In and Sign Up.html";
+			alert("You will be logged out. Please sign in again.");
+                        window.location.href = "../LogOutServlet";
 		});
 		$("#icon").click(function(){
 			window.location.href = "../ToHomePageServlet";
@@ -119,7 +123,7 @@
 	</span>
 	
 	<span id="right-header">
-		<button id="user">Marienne Lopez</button>
+            <button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
 		<span id="line"></span>
 		<button id="home">Home</button>
 		<span id="line"></span>
