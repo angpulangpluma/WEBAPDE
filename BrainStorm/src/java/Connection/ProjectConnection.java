@@ -26,6 +26,49 @@ import java.text.SimpleDateFormat;
  */
 public class ProjectConnection {
  
+    public String getProjectname2(int id){
+        
+        String sql = "select projectname from topic , project where topic.projectID = project.projectID and topicID = "+ id;
+        
+         String name="";
+          try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next())
+              name = rs.getString(1);
+                         
+        }catch(Exception e){
+            System.out.println("HERE WHYY");
+            System.out.println(e);
+        }
+        
+        return name;
+        
+    }
+    
+    public String getTopicname2(int id){
+        
+        String sql = "select topicname from topic where topicID = "+ id;
+        String name="";
+          try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next())
+              name = rs.getString(1);
+                         
+        }catch(Exception e){
+            System.out.println("HERE WHYY");
+            System.out.println(e);
+        }
+        
+        return name;
+    }
     
     public void getTopics(ProjectPageBean Bean){
         

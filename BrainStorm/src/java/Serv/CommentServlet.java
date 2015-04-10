@@ -6,10 +6,13 @@
 
 package Serv;
 
+import Bean.Member;
+import Connection.NotificationConnection;
 import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -76,17 +79,30 @@ public class CommentServlet extends HttpServlet {
             throws ServletException, IOException {
         
        String comment = request.getParameter("text");
-       String topicid = request.getParameter("topicid");
+       String ideaid = request.getParameter("topicid");
        String userid = request.getParameter("userid");
 
-       System.out.println("TOPIC ID IS "+ topicid);
+       System.out.println("TOPIC ID IS "+ ideaid);
        
        ProjectConnection pc = new ProjectConnection();
-       pc.SaveComment(userid, topicid, comment);
+       pc.SaveComment(userid, ideaid, comment);
         Calendar cal = Calendar.getInstance();
     	cal.getTime();
     	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
     	String r = sdf.format(cal.getTime());
+        
+        NotificationConnection nc= new NotificationConnection();
+        int topicid = nc.getTopicId(Integer.parseInt(ideaid));
+       int groupid= pc.getGroupID(topicid);
+       ArrayList<Member> members; 
+        String projectname = pc.getProjectname2(topicid);
+        String topicname = pc.getTopicname2(topicid);
+        
+        
+      members = nc.getGroupmates(Integer.parseInt(userid), groupid);
+     System.out.println("MEMBERS ARE "+ members.size()+ "USER ID IS "+Integer.parseInt(userid)+" groupid"+groupid );
+      nc.saveNotif(Integer.parseInt(userid.trim()), groupid,"posted a new comment under project "+projectname+ " and topic "+ topicname, members);
+        
        response.setContentType("text/plain");  
         response.setCharacterEncoding("UTF-8"); 
         response.getWriter().write(r); 

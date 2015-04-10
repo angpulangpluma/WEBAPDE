@@ -14,7 +14,7 @@
         <script type="text/javascript" src="jquery-latest.js"></script>
 
         <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">-->
-        <link rel="stylesheet" type="text/css" media="all" href="jquery-ui-1.11.4.css"/>
+        <link rel="stylesheet" type="text/css" media="all" href="jquery-ui.1.11.4.css"/>
         
         <!--<script src="//code.jquery.com/jquery-1.10.2.js"></script>-->
         <script type="text/javascript" src="jquery-1.10.2.js"></script>
@@ -402,8 +402,9 @@
             <div id="notifs-whole">
                 <span class="titles">Notifications</span>
                 <div id="notifs">
-                    <div class="box">
+                    
                     <%for(Notification notif:notifs ){ %>    
+                    <div class="box">
                         <div id="content">
                             <span id="notif-user"><%=notif.getNotifUser().getFirstName()%> <%=notif.getNotifUser().getLastName()%></span>
                             <%=notif.getNotif()%>
@@ -411,9 +412,10 @@
                             <span id="notif-topic"></span>
                         </div>
                         <div id="date-time"><%=notif.getNotifTime()%></div>
+                    </div>
                     <%} %>
                     
-                    </div>
+                   
                     
                     <!--
                     <div class="box">
@@ -427,6 +429,7 @@
                         <div id="date-time">1:22pm</div>
                     </div>
                     -->
+                    
                 </div>
 
             </div>

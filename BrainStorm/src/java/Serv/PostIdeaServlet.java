@@ -113,26 +113,26 @@ public class PostIdeaServlet extends HttpServlet {
       uid = Integer.parseInt(user.trim());
       int newtopicid;      
       NotificationConnection nc= new NotificationConnection();
-        int groupid;
+      String projectname = nc.getProjectname(intproject);
+      int groupid;
       ArrayList<Member> members;
       
       if(strid.equals("new")){
-          System.out.println("Add new topic");
           newtopicid = pc.getMaxProjID();
-          System.out.println("newtopicID is "+newtopicid );
           newtopicid = 1 + newtopicid;
-          
-          System.out.println("LATEST ID IS "+newtopicid);
-          
           pc.saveTopic(newtopicid, intproject,topictitle);
           pc.saveIdea(newtopicid, uid, idea);
           groupid = pc.getGroupID(newtopicid);
-         members = nc.getGroupmates(uid, groupid);
-        //  nc.saveNotif(uid, groupid,"posted a new idea", members);
+          //handles notification
+          members = nc.getGroupmates(uid, groupid);
+          nc.saveNotif(uid, groupid,"posted a new idea under project "+projectname , members);
               
       }else{
           id = Integer.parseInt(strid.trim());
           pc.saveIdea(id, uid, idea);
+          groupid = pc.getGroupID(id);
+           members = nc.getGroupmates(uid, groupid);
+           nc.saveNotif(uid, groupid,"posted a new idea under project "+projectname , members);
           
       }
       

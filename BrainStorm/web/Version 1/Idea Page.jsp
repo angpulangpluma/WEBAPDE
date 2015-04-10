@@ -58,21 +58,31 @@
                 
                 var flag = <%=Bean.getRating()%> ;
                 // flag = 0 dislike flag=1 like flag -1 undecided
-               
+               console.log("FLAG IS "+flag);
                 $("#agree").text("Agree");
                 $("#disagree").text("Disagree");
                 
-                if(flag === 1)
+                if(flag === 1){
                      $("#agree").text("Agreed");
+                 }
                 
-                if(flag === 0)
+                if(flag === 0){
                     $("disagree").text("Disagreed");
-                    
+                }   
                     
                 $("#agree").click(function(){
                  
-                 if(flag === 1)
-                     alert("You already agreed to this");
+                 if(flag === 1){
+                      $.post('../RatingServlet',{rate: -1, userid: <%=user.getId()%>, topicid: <%= idea.getIdeaID() %>},function(responseText) {     
+                            var rat = responseText.split(",");
+                            console.log(rat);
+                            $("#agree-num").text(rat[0]);
+                            $("#disagree-num").text(rat[1]);
+                            flag= 1;
+                            $("#agree").text("Agree");
+                            $("#disagree").text("Disagree");
+                        });      
+                 }
                 else{
                         $.post('../RatingServlet',{rate: 1, userid: <%=user.getId()%>, topicid: <%= idea.getIdeaID() %>},function(responseText) {     
                             var rat = responseText.split(",");
@@ -88,8 +98,19 @@
                 
                
                 $("#disagree").click(function(){
-                    if(flag ===0 )
-                     alert("You already disagreed to this");
+                    if(flag ===0 ){
+                      $.post('../RatingServlet',{rate: -1, userid: <%=user.getId()%>, topicid: <%= idea.getIdeaID() %>},function(responseText) {     
+                            var rat = responseText.split(",");
+                            console.log(rat);
+                            $("#agree-num").text(rat[0]);
+                            $("#disagree-num").text(rat[1]);
+                            flag= 1;
+                            $("#agree").text("Agree");
+                            $("#disagree").text("Disagree");
+                        });      
+                     
+                    }
+                     
                     else{
                         $.post('../RatingServlet',{rate: 0, userid: <%=user.getId()%>, topicid: <%= idea.getIdeaID() %>},function(responseText) {     
                             var rat = responseText.split(",");

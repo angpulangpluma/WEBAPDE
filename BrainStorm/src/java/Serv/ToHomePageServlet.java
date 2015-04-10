@@ -9,6 +9,7 @@ package Serv;
 import Bean.HomePageBean;
 import Bean.UserBean;
 import Connection.HomePageConnection;
+import Connection.NotificationConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -69,6 +70,8 @@ public class ToHomePageServlet extends HttpServlet {
         UserBean Bean = (UserBean) session.getAttribute("user");
         HPC.getGroups(Bean.getID(), pagebean);
 
+         NotificationConnection nc = new NotificationConnection();
+         pagebean.setNotification(nc.getNotifs(Bean.getID()));
          session.setAttribute("homepage", pagebean);
          response.sendRedirect("Version 1/Home Page.jsp");
     }
