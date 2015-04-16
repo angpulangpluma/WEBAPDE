@@ -1,0 +1,188 @@
+@font-face {
+	font-family: header;
+	src: url("../design/Lato-Light.ttf");
+}
+
+body {
+	background-color: #F5F5F5;
+	background-repeat: repeat;
+	overflow: auto;
+	font-family: helvetica;
+	font-size: 17;
+	font-weight: normal;
+	color: white;
+}
+
+select {
+	font-family: helvetica;
+	font-size: 14;
+	border: 0px;
+	background-color: transparent;
+}
+
+select:focus {
+	outline: 0;
+}
+
+/* ---------------------- HEADER ---------------------- */
+
+#header {
+	position: relative;
+	left: -8px;
+	top: -8px;
+	background-color: #FF5252;
+	height: 37px;
+	width: 101.2%;
+	border-bottom: 1px solid red;
+	-webkit-box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .5);
+	z-index: 2;
+}
+
+#left-header {
+	float: left;
+	position: relative;
+	top: 10px;
+	left: 110px;
+}
+
+#icon {
+	height: 30px;
+	width: 30px;
+	margin-top: -5px;
+}
+
+#search {
+	position: relative;
+	top: -11px;
+	margin-left: 10px;
+	color: lightgray;
+	background-color: white;
+	height: 23px;
+	width: 250px;
+	border: 0px;
+	border-radius: 3px;
+	text-indent: 5px;
+}
+
+#right-header {
+	float: right;
+	position: relative;
+	top: 10px;
+	right: 110px;
+}
+
+#user {
+	font-weight: bold;
+}
+
+#user, #home, #logout {
+	color: white;
+	border: 0;
+	background-color: transparent;
+	font-family: helvetica;
+	font-size: 15;
+	outline: none;
+}
+
+#user:hover, #home:hover {
+	background-color: #E53935;
+	border-radius: 4px;
+	outline: none;
+}
+
+#logout {
+	color: #B71C1C;
+}
+
+#logout:hover {
+	color: white;
+}
+
+.h-select {
+	width: 20px;
+	height: 20px;
+	color: white;
+	background-color: #ff3333;
+	border: 0px;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+#line {
+	border-left: 1px solid #E53935;
+	height: 5px;
+	margin-right: 6px;
+}
+
+/* ---------------------- CENTER CONTENT ---------------------- */
+
+#center-content {
+	width: 250px;
+	height: 400px;
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	margin: auto;
+	color: gray;
+	font-size: 15;
+}
+
+#name {
+	float: right;
+	font-family: header;
+	font-size: 25;
+	color: black;
+}
+
+#forms {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+	margin: auto;
+	float: right;
+	background-color: #EEEEEE;
+	padding: 10px;
+	border: 0px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, .2);	
+}
+
+.inputs {
+	height: 25px;
+	width: 250px;
+	color: black;
+	background-color: white;
+	border: .5px solid #E0E0E0;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+	text-indent: 5px;
+}
+
+#save {
+	float: right;
+	color: white;
+	background-color: #ff6666;
+	height: 23px;
+	width: 70px;
+	border: 0px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 2.5px -1px rgba(0, 0, 0, .7);
+}
+
+/* ---------------------- FOOTER ---------------------- */
+
+#footer {
+	position: fixed;
+	left: -8px;
+	bottom: 0%;
+	background-color: #F0F0F0;
+	height: 30px;
+	width: 101.2%;
+	border-bottom: 1px solid lightgray;
+	-webkit-box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, .3);
+	z-index: 1;
+	color: black;
+}

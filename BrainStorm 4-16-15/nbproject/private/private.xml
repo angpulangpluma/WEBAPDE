@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Web">
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/LoginServlet.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Connection/ProjectConnection.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Bean/Notification.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/web/Version%201/Home%20Page.jsp</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Connection/NotificationConnection.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Bean/Member.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Bean/HomePageBean.java</file>
+            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/PostIdeaServlet.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/hsibayan/Documents/NetBeansProjects/X%20WEBAPDE%20APR11%20-%20Search%20and%20Sort/BrainStorm/web/jsp/Search%20Page.jsp</file>
+            <file>file:/C:/Users/hsibayan/Documents/NetBeansProjects/X%20WEBAPDE%20APR11%20-%20Search%20and%20Sort/BrainStorm/src/java/Serv/SearchJoinGroupServlet.java</file>
+        </group>
+    </open-files>
+</project-private>
