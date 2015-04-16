@@ -26,6 +26,33 @@ import java.text.SimpleDateFormat;
  */
 public class ProjectConnection {
     
+    public Member getIdeaOwner(String ideaid){
+        
+        String sql ="select firstname, lastname,user.userID  from idea, user " +
+                    "where idea.userID = user.userID " +
+                    "and idea.ideaID = "+ ideaid;
+        
+        Member member=null;
+        
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+               member = new Member(rs.getInt(3), rs.getString(1),rs.getString(2));
+           }
+         }
+          catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return member;
+        
+    }
+    
+    
+    
     public String getProjectname2(int id){
         
         String sql = "select projectname from topic , project where topic.projectID = project.projectID and topicID = "+ id;

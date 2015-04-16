@@ -74,7 +74,8 @@ public class MainIdeaServlet extends HttpServlet {
         UserBean ub = (UserBean) ses.getAttribute("user");
         
         ProjectConnection pc = new ProjectConnection();
-        Member m = new Member(ub.getID(), ub.getFirstName(), ub.getLastName());
+        
+        Member m = pc.getIdeaOwner(strideaid);
         Idea idea = pc.getIdeaComments(ideaid,m);
         
         IdeaPageBean idb = new IdeaPageBean(idea);

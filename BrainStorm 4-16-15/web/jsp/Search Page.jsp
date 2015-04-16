@@ -25,6 +25,7 @@
                     break;
                 case "group":
                     groups =(ArrayList<Group>) s.getAttribute("groups");
+                    break;
             }
             
             System.out.println("sizes: " + users.size() + " - " + groups.size());

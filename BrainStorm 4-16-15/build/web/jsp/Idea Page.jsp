@@ -140,7 +140,7 @@
 	</span>
 	
 	<span id="right-header">
-            <button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
+            <button id="user"><%=user.getFirstName()%> <%=user.getLastName()%></button>
 		<span id="line"></span>
 		<button id="home">Home</button>
 		<span id="line"></span>
