@@ -53,6 +53,11 @@
                            "<span id=\"comment-content\">"+ commenttext+" </span>"+
                             "</div>"
                         );
+                       var numberofcomments =  $("#agree-num").text();
+                       numberofcomments++;
+                       $("#comments-num").text(numberofcomments);
+                       $("#text-comment").val("");
+                        
                     });       
 		});
                 
@@ -144,7 +149,7 @@
 	</span>
 	
 	<span id="right-header">
-            <button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
+            <button id="user"><%=user.getFirstName()%> <%=user.getLastName()%></button>
 		<span id="line"></span>
 		<button id="home">Home</button>
 		<span id="line"></span>
