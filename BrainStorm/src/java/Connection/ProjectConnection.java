@@ -50,6 +50,23 @@ public class ProjectConnection {
         
     }
     
+    public void getProjectName(Project p){
+        String sql = "select projectname from project where project.projectID = " + p.getID();
+        
+        try{
+            Connection con = DataBase.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            
+            if (rs.next()){
+                p.setName(rs.getString(1));
+            } else p.setName(" ");
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     public String getTopicname2(int id){
         
         String sql = "select topicname from topic where topicID = "+ id;
@@ -162,6 +179,24 @@ public class ProjectConnection {
         }
         
         return gid;
+    }
+    
+    public String getGroupName(int groupid){
+        String sql = "select groupID from groups where groupID = " + groupid;
+        String result = " ";
+        try{
+            Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+               result = rs.getString(1);
+           }
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return result;
     }
     
     public String getTopicName(String topicID){
