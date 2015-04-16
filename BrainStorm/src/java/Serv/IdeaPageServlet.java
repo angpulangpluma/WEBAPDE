@@ -6,11 +6,14 @@
 
 package Serv;
 
-import Bean.ProjectPageBean;
+import Bean.Group;
+import Bean.Project;
+import Bean.Topic;
 import Bean.UserBean;
 import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,18 +65,21 @@ public class IdeaPageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String strid = request.getParameter("id");
+        String strid = request.getParameter("projid");
         int id = Integer.parseInt(strid.trim());
+        strid = request.getParameter("grpid");
+        int grpid = Integer.parseInt(strid.trim());
         HttpSession session = request.getSession();
         UserBean Bean = (UserBean) session.getAttribute("user");
         
         ProjectConnection pc = new ProjectConnection();
-        ProjectPageBean ppb = new ProjectPageBean(id);
+        Project ppb = new Project(id);
+        Group g = new Group(grpid, pc.getGroupName(grpid));
+        System.out.println("The group is called " + g.getGroupName() + " and has the ID " + g.getID());
         pc.getTopics(ppb);
-        
-        
+        pc.getProjectName(ppb);
         session.setAttribute("project", ppb);
-   
+        session.setAttribute("group", g);
         response.sendRedirect("Version 1/Main page.jsp");
         
         

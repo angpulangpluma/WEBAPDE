@@ -32,6 +32,7 @@
         <%
             UserBean Bean = (UserBean) session.getAttribute("user");
             HomePageBean pagebean = (HomePageBean) session.getAttribute("homepage");
+            //ArrayList<Group> groupbean = (Group) session.getAttribute("grplist");
             ArrayList<Group> groups = pagebean.getGroups();
             ArrayList<Notification> notifs = pagebean.getNotifs();
             int gnumber = groups.size();
@@ -53,6 +54,7 @@
                <% for (int i = 0; i < groups.size(); i++) { %>
                 groupids[<%=i%>] = <%=groups.get(i).getID()%> ;
                 <%}%>
+                    
 /*
                 $("#search").keyup(function() {
                     search = $("#search").val();
@@ -343,7 +345,7 @@
                     <div id="grp-page">
                         <div id="grp-header">
                             <a id="grp-name">
-                                <span id="selectedgroup">Team Nerds</span> 
+                                <span id="selectedgroup"> </span> 
                             </a> <span id="grp-line"></span>
                             <a id="grp-projects">Projects</a> <span id="grp-line"></span>
                             <a id="grp-members">Members</a>
@@ -365,13 +367,12 @@
 
                         %>
                         <div id="grp-projects-page-<%=c%>">
-
                             <%
                                 for (Project p : proj) {
                             %>
                             <div class="grp-box">
-                                <a  href="../IdeaPageServlet?id=<%=p.getID()%>" class="proj-name"><%=p.getName()%></a>
-                                <div class="proj-ideas">10 Ideas</div>
+                                <a  href="../IdeaPageServlet?projid=<%=p.getID()%>&grpid=<%=g.getID()%>" class="proj-name"><%=p.getName()%></a>
+                                <div class="proj-ideas"><%=p.getIdeaCount()%> Ideas</div>
                             </div>
                             <%
                                 }

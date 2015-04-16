@@ -12,7 +12,7 @@
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <META HTTP-EQUIV="refresh" CONTENT="0;URL=Version 1/login.jsp">
+        <!--<META HTTP-EQUIV="refresh" CONTENT="0;URL=Version 1/login.jsp">-->
         
         <script type="text/javascript">
        //

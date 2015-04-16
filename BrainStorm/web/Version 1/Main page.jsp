@@ -1,8 +1,10 @@
+<%@page import="Bean.HomePageBean"%>
+<%@page import="Bean.Group"%>
 <%@page import="Bean.Idea"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="Bean.Topic"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Bean.ProjectPageBean"%>
+<%@page import="Bean.Project"%>
 <html>
 <head>
         
@@ -16,11 +18,18 @@
 	
         <%    
             HttpSession s = request.getSession();
-            ProjectPageBean Bean = (ProjectPageBean ) s.getAttribute("project");
+            Project Bean = (Project ) s.getAttribute("project");
             UserBean u = (UserBean) s.getAttribute("user");
             ArrayList<Topic> topics = Bean.getTopics();
-                     
-            
+            Group g = (Group)s.getAttribute("group");
+            HomePageBean src = (HomePageBean)session.getAttribute("homepage");
+            ArrayList<Group> groups = src.getGroups();
+            ArrayList<Project> projs = new ArrayList<>();
+            for (Group gr : groups){
+                if (gr.getGroupName().equals(gr.getGroupName())){
+                    projs = gr.getProjects();
+                }
+            }
          %>
         
         
@@ -161,12 +170,12 @@
 <div id="header">
 	<span id="left-header">
 		<img id="icon" src="Icon.png"/>
-		<span id="group">Team Nerds</span>
-		<select id="group-select" class="h-select">
+		<span id="group"><%=g.getGroupName()%></span>
+		<!--<select id="group-select" class="h-select">
 			<option>Members</option>
 			<option>Switch Group</option>
 			<option>Edit Group</option>
-		</select>
+		</select>-->
 		<input id="search" type="text" placeholder="Search" style="color: black">
 	</span>
 	
@@ -186,13 +195,19 @@
 </div>
 
 <div id="title-head">
-	<span id="title-project">WEBAPP Project</span>
+	<span id="title-project"><%=Bean.getName()%></span>
 	<select id="proj-select">
-		<option>WEBAPP</option>
-		<option>SWDESPA</option>
-		<option>OPERSYS</option>
-	</select>
-		
+            <%
+               //put option that when clicking one of the options would redirect to a page.
+               for (Project proj : projs){
+            %>
+            <option>other proj 1</option>
+            <option>other proj 2</option>
+            <option>other proj 3</option>
+        <%
+               }
+        %>
+        </select>
 	<span id="view" class="title-right">View 
 		<select class="title-select" id="topicselector">
 			<option>All Topics</option>

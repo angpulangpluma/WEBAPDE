@@ -27,7 +27,9 @@ public class Group {
     }
     
     public void addProject(int id,String name){
-        projects.add(new Project(id,name));
+        Project newproj = new Project(id);
+        newproj.setName(name);
+        projects.add(newproj);
     }
     
     public ArrayList<Member> getMembers(){

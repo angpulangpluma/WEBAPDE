@@ -2,7 +2,7 @@
 <%@page import="Bean.UserBean"%>
 <%@page import="Bean.Topic"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Bean.ProjectPageBean"%>
+<%@page import="Bean.Project"%>
 <html>
 <head>
         
@@ -16,7 +16,7 @@
 	
         <%    
             HttpSession s = request.getSession();
-            ProjectPageBean Bean = (ProjectPageBean ) s.getAttribute("project");
+            Project Bean = (Project ) s.getAttribute("project");
             UserBean u = (UserBean) s.getAttribute("user");
             ArrayList<Topic> topics = Bean.getTopics();
                      
@@ -186,7 +186,7 @@
 </div>
 
 <div id="title-head">
-	<span id="title-project">WEBAPP Project</span>
+	<span id="title-project"></span>
 	<select id="proj-select">
 		<option>WEBAPP</option>
 		<option>SWDESPA</option>
