@@ -11,13 +11,14 @@ import Bean.Group;
 import Bean.HomePageBean;
 import Bean.Idea;
 import Bean.Member;
-import Bean.ProjectPageBean;
+import Bean.Project;
 import Bean.Topic;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 
 /**
@@ -70,7 +71,33 @@ public class ProjectConnection {
         return name;
     }
     
-    public void getTopics(ProjectPageBean Bean){
+    public int getIdeaCount(int projid){
+        int result = 0;
+        String sql = "select count(*) from idea, topic, project, groups\n" +
+"    where idea.topicID = topic.topicID\n" +
+"		and topic.projectID = project.projectID\n" +
+"		and groups.groupID = project.groupID\n" +
+"		and project.projectID = " + projid;
+        
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next()){
+              result = rs.getInt(1);
+              System.out.println("Idea count: " + result);
+           }
+                         
+        }catch(Exception e){
+            System.out.println("HERE WHYY");
+            System.out.println(e);
+        }
+        return result;
+    }
+    
+    public void getTopics(Project Bean){
         
         String sql = "select topicID, topicname "
                 + "from topic "

@@ -6,11 +6,13 @@
 
 package Serv;
 
-import Bean.ProjectPageBean;
+import Bean.Project;
+import Bean.Topic;
 import Bean.UserBean;
 import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,12 +70,9 @@ public class IdeaPageServlet extends HttpServlet {
         UserBean Bean = (UserBean) session.getAttribute("user");
         
         ProjectConnection pc = new ProjectConnection();
-        ProjectPageBean ppb = new ProjectPageBean(id);
+        Project ppb = new Project(id);
         pc.getTopics(ppb);
-        
-        
         session.setAttribute("project", ppb);
-   
         response.sendRedirect("Version 1/Main page.jsp");
         
         

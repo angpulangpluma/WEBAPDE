@@ -2,14 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Web">
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/LoginServlet.java</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Connection/NotificationConnection.java</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/ToHomePageServlet.java</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/web/Version%201/Idea%20Page.jsp</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/web/index.jsp</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/CommentServlet.java</file>
-            <file>file:/C:/Users/jett/Documents/GitHub/BrainStorm/WEBAPDE/BrainStorm/src/java/Serv/PostIdeaServlet.java</file>
+        <group>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Serv/LoginServlet.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Connection/ProjectConnection.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Bean/Topic.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Bean/Group.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/Version%201/Post%20Page.jsp</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Connection/UserConnection.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/Version%201/Main%20page.jsp</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/index.jsp</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Connection/HomePageConnection.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/Version%201/Idea%20Page.jsp</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Serv/ToHomePageServlet.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/Version%201/Home%20Page.jsp</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Bean/HomePageBean.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/src/java/Bean/Project.java</file>
+            <file>file:/C:/Users/Ying/Documents/NetBeansProjects/BrainStorm/web/Version%201/Edit%20Profile%20Page.jsp</file>
         </group>
     </open-files>
 </project-private>
