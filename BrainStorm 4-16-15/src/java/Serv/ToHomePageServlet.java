@@ -6,12 +6,16 @@
 
 package Serv;
 
+import Bean.Group;
 import Bean.HomePageBean;
+import Bean.Project;
 import Bean.UserBean;
 import Connection.HomePageConnection;
 import Connection.NotificationConnection;
+import Connection.ProjectConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,9 +70,21 @@ public class ToHomePageServlet extends HttpServlet {
         HttpSession session = request.getSession();
         HomePageBean pagebean = new HomePageBean();
         HomePageConnection HPC = new HomePageConnection();
+        ProjectConnection pc = new ProjectConnection();
 
         UserBean Bean = (UserBean) session.getAttribute("user");
+        
         HPC.getGroups(Bean.getID(), pagebean);
+        ArrayList<Group> groups = pagebean.getGroups();
+         for (Group g : groups){
+             System.out.println("initializing ideas, groups");
+             ArrayList<Project> projects = g.getProjects();
+             for (Project p : projects){
+                 System.out.println("initializing ideas, projects");
+                 pc.getTopics(p);
+                 p.setIdeaCount(pc.getIdeaCount(p.getID()));
+             }
+         }
         
         NotificationConnection nc = new NotificationConnection();
         pagebean.setNotification(nc.getNotifs(Bean.getID()));

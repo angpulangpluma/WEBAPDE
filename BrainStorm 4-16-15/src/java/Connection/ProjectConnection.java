@@ -11,6 +11,7 @@ import Bean.Group;
 import Bean.HomePageBean;
 import Bean.Idea;
 import Bean.Member;
+import Bean.Project;
 import Bean.ProjectPageBean;
 import Bean.Topic;
 import java.sql.Connection;
@@ -76,6 +77,23 @@ public class ProjectConnection {
         
     }
     
+    public void getProjectName(Project p){
+        String sql = "select projectname from project where project.projectID = " + p.getID();
+        
+        try{
+            Connection con = DataBase.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs;
+            rs = stmt.executeQuery(sql);
+            
+            if (rs.next()){
+                p.setName(rs.getString(1));
+            } else p.setName(" ");
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     public String getTopicname2(int id){
         
         String sql = "select topicname from topic where topicID = "+ id;
@@ -97,7 +115,33 @@ public class ProjectConnection {
         return name;
     }
     
-    public void getTopics(ProjectPageBean Bean){
+    public int getIdeaCount(int projid){
+        int result = 0;
+        String sql = "select count(*) from idea, topic, project, groups\n" +
+"    where idea.topicID = topic.topicID\n" +
+"		and topic.projectID = project.projectID\n" +
+"		and groups.groupID = project.groupID\n" +
+"		and project.projectID = " + projid;
+        
+        try{
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           
+           if(rs.next()){
+              result = rs.getInt(1);
+              System.out.println("Idea count: " + result);
+           }
+                         
+        }catch(Exception e){
+            System.out.println("HERE WHYY");
+            System.out.println(e);
+        }
+        return result;
+    }
+    
+    public void getTopics(Project Bean){
         
         String sql = "select topicID, topicname "
                 + "from topic "
@@ -182,6 +226,24 @@ public class ProjectConnection {
         }
         
         return topicname;
+    }
+    
+    public String getGroupName(int groupid){
+        String sql = "select groupID from groups where groupID = " + groupid;
+        String result = " ";
+        try{
+            Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           rs = stmt.executeQuery(sql);
+           if(rs.next()){
+               result = rs.getString(1);
+           }
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        return result;
     }
     
     public Idea getIdeaComments(int id, Member member){

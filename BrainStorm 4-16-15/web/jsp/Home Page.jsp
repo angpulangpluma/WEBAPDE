@@ -351,8 +351,8 @@
                                 for (Project p : proj) {
                             %>
                             <div class="grp-box">
-                                <a  href="../IdeaPageServlet?id=<%=p.getID()%>" class="proj-name"><%=p.getName()%></a>
-                                <div class="proj-ideas">10 Ideas</div>
+                                <a  href="../IdeaPageServlet?projid=<%=p.getID()%>&grpid=<%=g.getID()%>" class="proj-name"><%=p.getName()%></a>
+                                <div class="proj-ideas"><%=p.getIdeaCount()%></div>
                             </div>
                             <%
                                 }

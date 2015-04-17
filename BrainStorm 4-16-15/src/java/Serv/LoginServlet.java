@@ -5,13 +5,17 @@
  */
 package Serv;
 
+import Bean.Group;
 import Bean.HomePageBean;
+import Bean.Project;
 import Bean.UserBean;
 import Connection.HomePageConnection;
 import Connection.NotificationConnection;
+import Connection.ProjectConnection;
 import Connection.UserConnection;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -86,8 +90,19 @@ public class LoginServlet extends HttpServlet {
         if (UserConnection.userquery.isVerify(user, password, Bean)) {
             HomePageBean pagebean = new HomePageBean();
             HomePageConnection HPC = new HomePageConnection();
+            ProjectConnection pc = new ProjectConnection();
             NotificationConnection nc = new NotificationConnection();
             HPC.getGroups(Bean.getID(), pagebean);
+            ArrayList<Group> groups = pagebean.getGroups();
+         for (Group g : groups){
+             System.out.println("initializing ideas, groups");
+             ArrayList<Project> projects = g.getProjects();
+             for (Project p : projects){
+                 System.out.println("initializing ideas, projects");
+                 pc.getTopics(p);
+                 p.setIdeaCount(pc.getIdeaCount(p.getID()));
+             }
+         }
             pagebean.setNotification(nc.getNotifs(Bean.getID()));
             
             session.setAttribute("homepage", pagebean);
