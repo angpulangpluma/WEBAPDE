@@ -7,7 +7,7 @@
 <%@page import="Bean.UserBean"%>
 <html>
     <head>
-        <title>Brainstorm</title>
+        <title>BrainStorm</title>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <script type="text/javascript" src="../others/jquery-latest.js"></script>

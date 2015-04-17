@@ -1,3 +1,5 @@
+<%@page import="Bean.Project"%>
+<%@page import="Bean.Group"%>
 <%@page import="Bean.Member"%>
 <%@page import="Bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
@@ -6,19 +8,23 @@
 <%@page import="Bean.UserBean"%>
 <html>
 <head>
-	<title>Team Nerds</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../css/Idea Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script type="text/javascript" src="../others/jquery.min.js"></script>
-	<script>
-          <%
+    <%
               UserBean u = (UserBean) session.getAttribute("user");
               session = request.getSession();
               IdeaPageBean Bean = (IdeaPageBean)session.getAttribute("idea");
               Idea idea = Bean.getIdea();
               Member user = idea.getUser();
               ArrayList<Comment> comments = idea.getComments();
+              Group g = (Group) session.getAttribute("group");
+              Project p = (Project) session.getAttribute("project");
           %>
+          
+	<title>Idea of <%=p.getName()%> under <%=g.getGroupName()%></title>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/Idea Style.css"/>
+	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
+	<script type="text/javascript" src="../others/jquery.min.js"></script>
+	<script>
+          
             
             
 	$(document).ready(function(){

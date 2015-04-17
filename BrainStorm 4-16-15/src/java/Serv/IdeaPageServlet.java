@@ -8,7 +8,6 @@ package Serv;
 
 import Bean.Group;
 import Bean.Project;
-import Bean.ProjectPageBean;
 import Bean.UserBean;
 import Connection.ProjectConnection;
 import java.io.IOException;

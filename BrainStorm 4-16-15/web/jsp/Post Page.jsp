@@ -1,26 +1,25 @@
+<%@page import="Bean.Group"%>
+<%@page import="Bean.Project"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Bean.Topic"%>
-<%@page import="Bean.ProjectPageBean"%>
 <html>
 <head>
-	<title>Team Nerds</title>
+    <%
+             HttpSession s = request.getSession();
+             Project Bean = (Project ) s.getAttribute("project");
+             ArrayList<Topic> topics = Bean.getTopics();
+             UserBean ub = (UserBean)s.getAttribute("user");
+             Group g = (Group) session.getAttribute("group");
+              Project p = (Project) session.getAttribute("project");
+         %>
+	<title>Idea of <%=p.getName()%> under <%=g.getGroupName()%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" media="all" href="../css/Post Style.css"/>
 	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
 	<script type="text/javascript" src="../others/jquery.min.js"></script>
 	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
 	<script>
-            
-         <%
-             HttpSession s = request.getSession();
-             ProjectPageBean Bean = (ProjectPageBean ) s.getAttribute("project");
-             ArrayList<Topic> topics = Bean.getTopics();
-             UserBean ub = (UserBean)s.getAttribute("user");
-             
-             
-             
-         %>
             
 	 $(document).ready(function(){
 		$("#newtopic").hide();

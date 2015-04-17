@@ -4,17 +4,8 @@
 <%@page import="Bean.UserBean"%>
 <%@page import="Bean.Topic"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Bean.ProjectPageBean"%>
 <html>
 <head>
-        
-	<title>Team Nerds</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" media="all" href="../css/Main Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script type="text/javascript" src="../others/jquery.min.js"></script>
-	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
-	
         <%    
             HttpSession s = request.getSession();
             Project Bean = (Project ) s.getAttribute("project");
@@ -23,7 +14,13 @@
             Group g = (Group)s.getAttribute("group");
         %>
         
-        
+	<title><%=Bean.getName()%> under <%=g.getGroupName()%></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="all" href="../css/Main Style.css"/>
+	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
+	<script type="text/javascript" src="../others/jquery.min.js"></script>
+	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
+	   
         <script>
 	$(document).ready(function(){
             var Idea = function (firstName, lastName, topic, idea , id, time , agree, disagree,comments) {
