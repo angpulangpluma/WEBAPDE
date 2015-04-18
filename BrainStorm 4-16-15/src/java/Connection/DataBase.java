@@ -35,7 +35,7 @@ public class DataBase {
         }
         
         try {
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/brainstorm","root","070670");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/brainstorm","root","jetisjet");
    
         } catch (SQLException e) {
             System.out.println("You have an error  "+ e);

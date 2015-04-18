@@ -28,6 +28,12 @@
                     break;
             }
             
+                for(UserBean u: users){
+                System.out.println("HEREE>>> " + u.getFirstName()  +" " +u.getID());
+            
+                }
+            
+            
             System.out.println("sizes: " + users.size() + " - " + groups.size());
         %>
         
@@ -60,7 +66,11 @@
             
             function reloadPeople() {
                 console.log("People: " + "<%= users.size() %>");
-                
+                   
+                <% for(UserBean tempUser : users) { %>
+                    var name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
+                    var id = "<%=tempUser.getID()%>";  
+                   
                 var clickables = "<input type=\"button\" value=\"Add Member\" class=\"search-button\" name=\"" + id + "\">\n" +
                     "<select class=\"search-select\" id=\"select" + id + "\">" + 
                     <% for(Group tempGroup : myGroups) { %>
@@ -68,9 +78,7 @@
                     <% } %>
                     "</select>";
                     
-                <% for(UserBean tempUser : users) { %>
-                    var name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
-                    var id = "<%=tempUser.getID()%>";
+
                     appendBox(name, id, clickables, "");
                     console.log("   " + name);
                 <% } %>

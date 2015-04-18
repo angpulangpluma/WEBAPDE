@@ -78,6 +78,10 @@ public class SearchServlet extends HttpServlet {
                 con.getUsers(input, users, user.getID());
                 session.setAttribute("people", users);
                 System.out.println(">>>>> " + users.size());
+                
+           
+                
+                
                 break;
             case "group":
                 ArrayList<Group> groups = new ArrayList<Group>();
@@ -88,6 +92,7 @@ public class SearchServlet extends HttpServlet {
         
         System.out.println(">" + input + "<");
 
+    
         session.setAttribute("chosen", chosen);
         response.sendRedirect("jsp/Search Page.jsp");
     }

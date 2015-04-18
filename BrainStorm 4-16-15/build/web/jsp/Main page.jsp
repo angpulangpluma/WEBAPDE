@@ -1,3 +1,5 @@
+<%@page import="Bean.Project"%>
+<%@page import="Bean.Group"%>
 <%@page import="Bean.Idea"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="Bean.Topic"%>
@@ -15,9 +17,10 @@
 	
         <%    
             HttpSession s = request.getSession();
-            ProjectPageBean Bean = (ProjectPageBean ) s.getAttribute("project");
+            Project Bean = (Project ) s.getAttribute("project");
             UserBean u = (UserBean) s.getAttribute("user");
             ArrayList<Topic> topics = Bean.getTopics();
+            Group g = (Group)s.getAttribute("group");
         %>
         
         
@@ -154,7 +157,7 @@
                 window.location.href = "Edit Profile Page.jsp";
             });
             $(document).on("click","#home", function(){
-                window.location.href = "Home Page.html";
+                window.location.href = "../ToHomePageServlet";
             });
             $(document).on("click","#logout", function(){
                 alert("You will be logged out. Please sign in again.");
@@ -193,7 +196,7 @@
 <div id="header">
 	<span id="left-header">
 		<img id="icon" src="../design/Icon.png"/>
-		<span id="group">Team Nerds</span>
+		<span id="group"><%=g.getGroupName()%></span>
 		<select id="group-select" class="h-select">
 			<option>Members</option>
 			<option>Switch Group</option>
@@ -218,7 +221,7 @@
 </div>
 
 <div id="title-head">
-	<span id="title-project">WEBAPP Project</span>
+	<span id="title-project"><%=Bean.getName()%></span>
 	<select id="proj-select">
 	</select>
 		
