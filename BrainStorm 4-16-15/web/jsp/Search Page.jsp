@@ -148,15 +148,10 @@
                     window.location.href = "Log In and Sign Up.html";
             });
 
-            /*$("#home").click(function(){
-                    window.location.href = "../ToHomePageServlet";
-            });*/
             $("#icon").click(function(){
                     window.location.href = "../ToHomePageServlet";
             });
-            /*$("#grp-name").click(function(){
-                    window.location.href = "Main Page.html";
-            });*/
+            
             $(".proj-name").click(function(){
                     window.location.href = "../IdeaPageServlet?projid=<%=p.getID()%>&grpid=<%=g.getID()%>";
             });
@@ -175,7 +170,6 @@
 	<span id="right-header">
 		<button id="user"><%=user.getFirstName()%><%=user.getLastName()%></button>
 		<span id="line"></span>
-                <!--<button id="home">Home</button>-->
 		<select id="user-select" class="h-select">
 			<option id="edit">Edit Profile</option>
 			<option id="logout">Log Out</option>

@@ -34,9 +34,7 @@
 			else
 				$("#newtopic").hide();
 		});
-		/*$("#group").click(function(){
-			window.location.href = "Main Page.html";
-		});*/
+		
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.html";
 		});

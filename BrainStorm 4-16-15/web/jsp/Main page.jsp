@@ -153,9 +153,7 @@
             $(document).on("click","#user", function(){
                 window.location.href = "Edit Profile Page.jsp";
             });
-            /*$(document).on("click","#home", function(){
-                window.location.href = "../ToHomePageServlet";
-            });*/
+            
             $(document).on("click","#logout", function(){
                 alert("You will be logged out. Please sign in again.");
                 window.location.href = "Log In and Sign Up.html";
@@ -163,9 +161,7 @@
             $(document).on("click","#icon", function(){
                 window.location.href = "../ToHomePageServlet";
             });
-            /*$(document).on("click", "#grp-name", function(){
-                window.location.href = "Main Page.html";
-            });*/
+            
             $(document).on("change", ".title-select", function(){
                 var topicSelected = $("#topicselector option:selected").text();
                 var sortSelected = $("#sortselector option:selected").text();
@@ -194,33 +190,18 @@
 	<span id="left-header">
 		<img id="icon" src="../design/Icon.png"/>
 		<span id="group"><%=g.getGroupName()%></span>
-		<!--<select id="group-select" class="h-select">
-			<option>Members</option>
-			<option>Switch Group</option>
-			<option>Edit Group</option>
-		</select>-->
 		<input id="search" type="text" placeholder="Search" style="color: black">
 	</span>
 	
 	<span id="right-header">
 		<button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
 		<span id="line"></span>
-		<!--<button id="home">Home</button>
-		<span id="line"></span>-->
 		<button id="logout">Log Out</button>
-		<!---
-		<select id="user-select" class="h-select">
-			<option>Settings</option>
-			<option>Log Out</option>
-		</select>
-		-->
 	</span>
 </div>
 
 <div id="title-head">
 	<span id="title-project"><%=Bean.getName()%></span>
-	<!--<select id="proj-select">
-	</select>-->
 		
 	<span id="view" class="title-right">View 
 		<select class="title-select" id="topicselector">
@@ -237,39 +218,8 @@
 </div>
 
 <div id="ideas" align="center">
-    
-    <!--
-	<div class="box">
-		<div id="b-head">
-			<span id="maker">Jet Virtusio</span>
-			<span id="date-time">1:23pm</span>
-			<span id="b-topic">HTML</span>
-		</div>
-   -->
-    <!--<div id="title">This is an Idea</div>-->
-    <!--
-    <div id="content">These sentences are stuffs about the idea. These sentences are stuffs about the idea. 
-				klsdka askdjskl asdklj ;madmsakdmsadThese sentences are stuffs about the idea. Blablablabla alsjd laksjdkslajdksadk asldn askdnsa laksds</div>
-                
-                <div id="b-footer">
-			<span id="comments">2</span> Comments
-			<span id="agree">5</span> Agrees
-			<span id="disagree">3</span> Disagrees
-			
-       
-		</div>
 	</div>
-    -->
-    
-	
-	</div>
-
-
-
-<!--
-<div id="footer">
-</div>
--->
+        
 </div>
 </body>
 </html>

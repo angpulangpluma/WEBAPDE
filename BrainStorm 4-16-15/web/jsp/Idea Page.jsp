@@ -28,15 +28,11 @@
             
             
 	$(document).ready(function(){
-		/*$("#group").click(function(){
-			window.location.href = "Main Page.html";
-		});*/
+		
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.jsp";
 		});
-		/*$("#home").click(function(){
-			window.location.href = "../ToHomePageServlet";
-		});*/
+		
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
                         window.location.href = "../LogOutServlet";
@@ -44,9 +40,7 @@
 		$("#icon").click(function(){
 			window.location.href = "../ToHomePageServlet";
 		});
-		/*$("#grp-name").click(function(){
-			window.location.href = "Main Page.html";
-		});*/
+		
                 $("#button-comment").click(function(){
 			var commenttext = $("#text-comment").val();
                         $.post('../CommentServlet',{text:commenttext,userid: <%=user.getId()%>, topicid: <%= idea.getIdeaID() %>},function(responseText) { 
@@ -137,26 +131,13 @@
 	<span id="left-header">
 		<img id="icon" src="../design/Icon.png"/>
 		<span id="group"><%=g.getGroupName()%></span>
-		<!--<select id="group-select" class="h-select">
-			<option>Members</option>
-			<option>Switch Group</option>
-			<option>Edit Group</option>
-		</select>-->
 		<input id="search" type="text" placeholder="Search" style="color: black">
 	</span>
 	
 	<span id="right-header">
             <button id="user"><%=user.getFirstName()%> <%=user.getLastName()%></button>
 		<span id="line"></span>
-		<!--<button id="home">Home</button>
-		<span id="line"></span>-->
 		<button id="logout">Log Out</button>
-		<!---
-		<select id="user-select" class="h-select">
-			<option>Settings</option>
-			<option>Log Out</option>
-		</select>
-		-->
 	</span>
 </div>
 
@@ -167,7 +148,6 @@
 			<span id="date-time"> <%=idea.getTime()%></span>
 			<span id="b-topic"><%=idea.getTopicname()%></span>
 		</div>
-		<!--<div id="title">This is an Idea</div>-->
 		<div id="content"> <%=idea.getIdea()%> </div>
 		<div id="b-footer">
                     
@@ -187,13 +167,6 @@
 				<span id="comment-content"><%=comments.get(crt).getCommentDesc()%></span>
 			</div>
                         <%}%>
-                    <!--
-			<div class="comment">
-				<span id="comment-user">Hannah Sibayan</span>
-				<span id="comment-date-time">1:55pm</span><br/>
-				<span id="comment-content">Nice nice nice!</span>
-			</div>
-                    -->
 		</div>
 		<div id="write">
 			<textarea id="text-comment" placeholder="Write your comment here.."></textarea>
@@ -201,10 +174,5 @@
 		</div>
 	</div>
 </div>
-
-<!--
-<div id="footer">
-</div>
--->
 </body>
 </html>
