@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -108,6 +109,13 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("homepage", pagebean);
             session.setAttribute("user", Bean);
             response.sendRedirect("jsp/Home Page.jsp");
+        }else{
+            
+            request.setAttribute("message", "Invalid Username/Password");
+           RequestDispatcher view = request.getRequestDispatcher("jsp/login.jsp");
+           view.forward(request, response);
+            
+            
         }
     }
 

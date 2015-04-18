@@ -59,6 +59,37 @@ public class UserConnection {
     }
     
     
+    public boolean checkUsername(String user){
+        
+        boolean r= true;
+        
+        String sql= "select * from user where username = '"+user+"'";
+        
+           try{
+            
+           Connection con =  DataBase.getConnection();
+           Statement stmt = con.createStatement();
+           ResultSet rs;
+           //rs = stmt.executeQuery(sql);
+           rs = stmt.executeQuery(sql);
+          
+          if(rs.next()){
+              if(rs.getString("username").equals(user))
+                  r=false;
+          }
+           
+        }catch(Exception e){
+            System.out.println(e);
+            r=false;
+        }
+        
+        return r;
+        
+        
+    }
+    
+    
+    
     public boolean makeruser(String user,String pass,String fname,String lname ){
         
         boolean r=true;

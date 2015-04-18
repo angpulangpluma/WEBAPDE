@@ -1,11 +1,17 @@
 <html>
 <head>
 	<title>Welcome to Brainstorm</title>
+        <link rel="stylesheet" type="text/css" media="all" href="css/LS Style.css"/>
 	<link rel="stylesheet" type="text/css" media="all" href="../css/LS Style.css"/>
 	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
+        <link rel="shortcut icon" href="design/Tab Icon.png"/>
 	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
 	<script type="text/javascript" src="../others/jquery-2.1.3.min.js"></script>
 	<script>
+          <%      	
+        String path = request.getContextPath() + "/SignUp2"; 
+        String path2 = request.getContextPath() + "/LoginServlet"; 
+            %>
 	$(document).ready(function(){
 		
 		$('button[name=login]').click(function(){
@@ -25,7 +31,10 @@
 			 
 		});
 		
-		
+  
+                });
+                
+                /**
 		$('button[name=signup]').click(function(){
 		   var firstname = $.trim($('input:text[name=firstname]').val());
 		   var lastname = $.trim($('input:text[name=lastname]').val());
@@ -55,6 +64,8 @@
 		  }
 		
 		});
+                **/
+                
 	});
 	</script>
 </head>
@@ -72,7 +83,7 @@
 
 	<div id="login" >
             
-            <form action ="../LoginServlet" method="POST">
+            <form action ="<%=path2%>" method="POST">
 		<input class="login-inputs" type="text" name="emaillogin" placeholder="Username"><br/><br/>
 		<input class="login-inputs" type="password" name="passwordlogin" placeholder="Password"><br/><br/>		
                 <button class="buttons" name="login">Log In</button>
@@ -81,15 +92,17 @@
 	
     
 	<div id="signup">
-            <form method="POST" action="../SignUp2">
+            ${message}
+            <form id="signupform"  method="POST" action="<%=path%>">
 		<span id="signup-header">No account yet? Sign Up</span><br/><br/>
 		<input type="text" class="signup-inputs" name="user" placeholder="Username" style="margin-top: -8px"><br/><br/>
 		<input type="text" class="signup-inputs" name="firstname" placeholder="First Name"><br/><br/>
 		<input type="text" class="signup-inputs" name="lastname" placeholder="Last Name"><br/><br/>
 		<input type="password" class="signup-inputs" name="passwordsignup" placeholder="Password"><br/><br/>
 		<input type="password" class="signup-inputs" name="anotherpass" placeholder="Re-enter Password"><br/><br/>
-		<button class="buttons" name="signup">Sign Up</button>
+		<button  class="buttons" name="signup">Sign Up</button>
             </form>    
+            
 	</div>
 	
 </div>

@@ -253,7 +253,8 @@
                     else {
                         $.get('../AddProjectServlet', { groupid :groupids[currGroup],name:newproject}, function(responseText) {
                            var maxid = responseText;
-                           $("#grp-projects-page-"+currGroup).append(" <div class=\"grp-box\"><a href=\"../IdeaPageServlet?id="+maxid+"\"class=\"proj-name\">"+ newproject+"</a></div>");
+                           $("#grp-projects-page-"+currGroup).append(" <div class=\"grp-box\"><a href=\"../IdeaPageServlet?projid="+maxid+"&"+"grpid="+groupids[currGroup]+"\"class=\"proj-name\">"+ newproject+"</a></div>");
+                           
                         });
                     }
                 });

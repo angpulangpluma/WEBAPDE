@@ -77,15 +77,31 @@ public class SignUp2 extends HttpServlet {
         UserConnection us = new UserConnection();
         
         request.getParameter("lastname");
-        if(us.makeruser(request.getParameter("user") , request.getParameter("anotherpass"),
-                request.getParameter("firstname") , request.getParameter("lastname"))){            
-            // RequestDispatcher view = request.getRequestDispatcher("Version 1/login.jsp");
-            // view.forward(request, response);
-            response.sendRedirect("jsp/login.jsp");
-        }
-        else 
-            System.out.println("Same password");
         
+        if( request.getParameter("user").trim().length() > 0 && request.getParameter("firstname").trim().length() >0
+            && request.getParameter("lastname").trim().length() >0 && request.getParameter("anotherpass").trim().length() > 0 ){
+        
+        if(request.getParameter("anotherpass").equals(request.getParameter("passwordsignup"))){
+            
+        if(us.checkUsername(request.getParameter("user"))){
+        
+            us.makeruser(request.getParameter("user") ,
+                request.getParameter("anotherpass"),
+                request.getParameter("firstname") , 
+                request.getParameter("lastname"));  
+                request.setAttribute("message", "Account Created!");
+        }
+        else{
+            request.setAttribute("message", "Username already taken");
+        } 
+            
+        }else request.setAttribute("message", "Enter Password Again");
+            
+        }else request.setAttribute("message", "Input in all of the fields");
+        
+           RequestDispatcher view = request.getRequestDispatcher("jsp/login.jsp");
+           view.forward(request, response);
+           // response.sendRedirect("jsp/login.jsp");
     }
 
     /**
