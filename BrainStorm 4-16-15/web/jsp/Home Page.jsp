@@ -76,9 +76,9 @@
                 $("#user").click(function() {
                     window.location.href = "Edit Profile Page.jsp";
                 });
-                $("#home").click(function() {
-                    window.location.href = "Home Page.html";
-                });
+                /*$("#home").click(function() {
+                    window.location.href = "../ToHomePageServlet";
+                });*/
                 $("#logout").click(function() {
                     alert("You will be logged out. Please sign in again.");
                     window.location.href = "../LogOutServlet";
@@ -87,7 +87,7 @@
                     window.location.href = "../ToHomePageServlet";
                 });
                 $("#grp-name").click(function() {
-                    window.location.href = "Main Page.html";
+                    //window.location.href = "Main Page.html";
                 });
 
                 //	$(".proj-name").click(function(){
@@ -279,8 +279,8 @@
             <span id="right-header">
                 <button id="user"> <%=Bean.getFirstName()%> <%=Bean.getLastName()%></button>
                 <span id="line"></span>
-                <button id="home">Home</button>
-                <span id="line"></span>
+                <!--<button id="home">Home</button>
+                <span id="line"></span>-->
                 <button id="logout">Log Out</button>
                 <!---
                 <select id="user-select" class="h-select">
@@ -320,7 +320,7 @@
                     <div id="grp-page">
                         <div id="grp-header">
                             <a id="grp-name">
-                                <span id="selectedgroup">Team Nerds</span> 
+                                <span id="selectedgroup"></span> 
                             </a> <span id="grp-line"></span>
                             <a id="grp-projects">Projects</a> <span id="grp-line"></span>
                             <a id="grp-members">Members</a>

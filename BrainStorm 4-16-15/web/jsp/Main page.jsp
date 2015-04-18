@@ -153,9 +153,9 @@
             $(document).on("click","#user", function(){
                 window.location.href = "Edit Profile Page.jsp";
             });
-            $(document).on("click","#home", function(){
+            /*$(document).on("click","#home", function(){
                 window.location.href = "../ToHomePageServlet";
-            });
+            });*/
             $(document).on("click","#logout", function(){
                 alert("You will be logged out. Please sign in again.");
                 window.location.href = "Log In and Sign Up.html";
@@ -163,9 +163,9 @@
             $(document).on("click","#icon", function(){
                 window.location.href = "../ToHomePageServlet";
             });
-            $(document).on("click", "#grp-name", function(){
+            /*$(document).on("click", "#grp-name", function(){
                 window.location.href = "Main Page.html";
-            });
+            });*/
             $(document).on("change", ".title-select", function(){
                 var topicSelected = $("#topicselector option:selected").text();
                 var sortSelected = $("#sortselector option:selected").text();
@@ -194,19 +194,19 @@
 	<span id="left-header">
 		<img id="icon" src="../design/Icon.png"/>
 		<span id="group"><%=g.getGroupName()%></span>
-		<select id="group-select" class="h-select">
+		<!--<select id="group-select" class="h-select">
 			<option>Members</option>
 			<option>Switch Group</option>
 			<option>Edit Group</option>
-		</select>
+		</select>-->
 		<input id="search" type="text" placeholder="Search" style="color: black">
 	</span>
 	
 	<span id="right-header">
 		<button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
 		<span id="line"></span>
-		<button id="home">Home</button>
-		<span id="line"></span>
+		<!--<button id="home">Home</button>
+		<span id="line"></span>-->
 		<button id="logout">Log Out</button>
 		<!---
 		<select id="user-select" class="h-select">
@@ -219,8 +219,8 @@
 
 <div id="title-head">
 	<span id="title-project"><%=Bean.getName()%></span>
-	<select id="proj-select">
-	</select>
+	<!--<select id="proj-select">
+	</select>-->
 		
 	<span id="view" class="title-right">View 
 		<select class="title-select" id="topicselector">

@@ -34,15 +34,15 @@
 			else
 				$("#newtopic").hide();
 		});
-		$("#group").click(function(){
+		/*$("#group").click(function(){
 			window.location.href = "Main Page.html";
-		});
+		});*/
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.html";
 		});
-		$("#home").click(function(){
+		/*$("#home").click(function(){
 			window.location.href = "../ToHomePageServlet";
-		});
+		});*/
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
                     window.location.href = "../LogOutServlet";
@@ -112,20 +112,20 @@
 <div id="header">
 	<span id="left-header">
 		<img id="icon" src="../design/Icon.png"/>
-		<span id="group">Team Nerds</span>
-		<select id="group-select" class="h-select">
+		<span id="group"><%=g.getGroupName()%></span>
+		<!--<select id="group-select" class="h-select">
 			<option>Members</option>
 			<option>Switch Group</option>
 			<option>Edit Group</option>
-		</select>
+		</select>-->
 		<input id="search" type="text" placeholder="Search" style="color: black">
 	</span>
 	
 	<span id="right-header">
 		<button id="user"><%= ub.getFirstName()%> <%=ub.getLastName()%></button>
 		<span id="line"></span>
-		<button id="home">Home</button>
-		<span id="line"></span>
+		<!--<button id="home">Home</button>
+		<span id="line"></span>-->
 		<button id="logout">Log Out</button>
 		<!---
 		<select id="user-select" class="h-select">

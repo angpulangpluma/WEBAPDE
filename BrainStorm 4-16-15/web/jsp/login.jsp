@@ -60,14 +60,12 @@
 		  }
 		  
 		  //if(email2!="" && email2.indexOf("@")==email2.lastIndexOf("@") && email2.indexOf("@")!=-1 && password1!="" && password2!="" && password1==password2 && firstname!="" && lastname!=""){
-                  if(email2!="" && password1!="" && password2!="" && firstname!="" && lastname!=""){
-                     
-                     
+                  if(email2!="" && password1!="" && password2!="" && firstname!="" && lastname!="" && password1==password2){
 
-		    window.location.href='Home Page.html';
+		   // window.location.href='Home Page.html';
 		}
 		
-		}); 
+		});
 	});
 	</script>
 </head>

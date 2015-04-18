@@ -1,19 +1,17 @@
+<%@page import="Bean.Project"%>
 <%@page import="Connection.SearchConnection"%>
 <%@page import="Bean.HomePageBean"%>
 <%@page import="Bean.Group"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="java.util.ArrayList"%>
 <html>
-<head>
-	<title>Brainstorm</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../css/Search Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script src="../others/jquery.js"></script>
-        
-        <%    
+    <%    
             HttpSession s = request.getSession();
+            UserBean user = (UserBean) session.getAttribute("user");
             String chosen = (String) s.getAttribute("chosen");
             HomePageBean pagebean = (HomePageBean) session.getAttribute("homepage");
+            Project p = (Project)session.getAttribute("project");
+            Group g = (Group)session.getAttribute("group");
             SearchConnection sCon = new SearchConnection();
             ArrayList<Group> myGroups = pagebean.getGroups();
             ArrayList<UserBean> users = new ArrayList<>();
@@ -30,6 +28,12 @@
             
             System.out.println("sizes: " + users.size() + " - " + groups.size());
         %>
+        
+<head>
+	<title>BrainStorm - Search Results</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/Search Style.css"/>
+	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
+	<script src="../others/jquery.js"></script>
         
 	<script>
 	$(document).ready(function(){
@@ -144,17 +148,17 @@
                     window.location.href = "Log In and Sign Up.html";
             });
 
-            $("#home").click(function(){
-                    window.location.href = "Home Page.html";
-            });
+            /*$("#home").click(function(){
+                    window.location.href = "../ToHomePageServlet";
+            });*/
             $("#icon").click(function(){
-                    window.location.href = "Home Page.html";
+                    window.location.href = "../ToHomePageServlet";
             });
-            $("#grp-name").click(function(){
+            /*$("#grp-name").click(function(){
                     window.location.href = "Main Page.html";
-            });
+            });*/
             $(".proj-name").click(function(){
-                    window.location.href = "Main Page.html";
+                    window.location.href = "../IdeaPageServlet?projid=<%=p.getID()%>&grpid=<%=g.getID()%>";
             });
             
 	});
@@ -169,9 +173,9 @@
 	</span>
 	
 	<span id="right-header">
-		<button id="user">Marienne Lopez</button>
+		<button id="user"><%=user.getFirstName()%><%=user.getLastName()%></button>
 		<span id="line"></span>
-		<button id="home">Home</button>
+                <!--<button id="home">Home</button>-->
 		<select id="user-select" class="h-select">
 			<option id="edit">Edit Profile</option>
 			<option id="logout">Log Out</option>
