@@ -1,26 +1,28 @@
+<%@page import="Bean.Group"%>
+<%@page import="Bean.Project"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Bean.Topic"%>
-<%@page import="Bean.ProjectPageBean"%>
 <html>
 <head>
-	<title>Team Nerds</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" type="text/css" media="all" href="../css/Post Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script type="text/javascript" src="../others/jquery.min.js"></script>
-	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
-	<script>
-            
-         <%
+    <%
              HttpSession s = request.getSession();
-             ProjectPageBean Bean = (ProjectPageBean ) s.getAttribute("project");
+             Project Bean = (Project ) s.getAttribute("project");
              ArrayList<Topic> topics = Bean.getTopics();
              UserBean ub = (UserBean)s.getAttribute("user");
-             
-             
-             
+             Group g = (Group) session.getAttribute("group");
+              Project p = (Project) session.getAttribute("project");
          %>
+	<title>Idea of <%=p.getName()%> under <%=g.getGroupName()%></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" media="all" href="../css/Post Style.css"/>
+	<script type="text/javascript" src="../others/jquery-latest.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="../others/jquery-ui.1.11.4.css"/>
+        <script type="text/javascript" src="../others/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../others/jquery-ui.1.11.4.js"></script>
+        <link rel="shortcut icon" href="../design/Tab Icon.png"/>
+	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
+	<script>
             
 	 $(document).ready(function(){
 		$("#newtopic").hide();
@@ -35,15 +37,11 @@
 			else
 				$("#newtopic").hide();
 		});
-		$("#group").click(function(){
-			window.location.href = "Main Page.html";
-		});
+		
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.html";
 		});
-		$("#home").click(function(){
-			window.location.href = "../ToHomePageServlet";
-		});
+
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
                     window.location.href = "../LogOutServlet";
@@ -54,29 +52,37 @@
 		$("#grp-name").click(function(){
 			window.location.href = "Main Page.html";
 		});
-		/*
-		$("input:button[name=post]").click(function(){
-		    var selected = $("#select-popup option:selected").text();
-			var desc = $("textarea#text-popup").val();
-			
-			if(selected=="new"){
-			  selected=$("input:text[name=topictitle]").val();
-			}
-			
-			if(desc== ""){
-			  alert("Please enter the idea description.");
-			}
-			
-			if(selected== ""){
-			  alert("Please enter the idea topic.");
-			}
-			
-			//if(selected!= "" && desc!= ""){
-			//  alert("Congratulations! A new idea has been created!");
-			//  window.location.href="Main Page.html";
-		//	}
-		});
-                */
+                
+                var sugg2=[];
+            var sugg=[];
+                $("#search").keyup(function() {
+                    var clickedradio = $("input:radio[name ='t']:checked").val();
+                    search = $("#search").val();
+                    console.log("Entered: " + search);
+                    if(clickedradio==="people") {
+                        $.get('../AutoComplete', {keyword: search}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg
+                            });
+                        });
+                    }
+                    else {
+                        $.get('../AutoCompleteGroup', {keyword: search,userid:<%=ub.getID()%>}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg2 = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg2
+                            });
+                        });
+                    }
+                });
+
 		
 	});
 	
@@ -111,36 +117,30 @@
 <div id="bg">
 
 <div id="header">
-	<span id="left-header">
-		<img id="icon" src="../design/Icon.png"/>
-		<span id="group">Team Nerds</span>
-		<select id="group-select" class="h-select">
-			<option>Members</option>
-			<option>Switch Group</option>
-			<option>Edit Group</option>
-		</select>
-		<input id="search" type="text" placeholder="Search" style="color: black">
-	</span>
-	
-	<span id="right-header">
-		<button id="user"><%= ub.getFirstName()%> <%=ub.getLastName()%></button>
-		<span id="line"></span>
-		<button id="home">Home</button>
-		<span id="line"></span>
-		<button id="logout">Log Out</button>
-		<!---
-		<select id="user-select" class="h-select">
-			<option>Settings</option>
-			<option>Log Out</option>
-		</select>
-		-->
-	</span>
-</div>
+            <form id="myradio" action="../SearchServlet" method="GET">
+                 <span id="left-header">
+                     <img id="icon" src="../design/Icon.png"/>
+                     <span id="group"><%=g.getGroupName()%></span>
+                     <input id="search" name="searchInput" type="text" placeholder="Search" style="color: black">     
 
-<!--
-<div id="footer">
-</div>
--->
+                     <span id="radios">
+                         <input type="radio" name="t" value="people" checked="checked" class="radio">People
+                         <input type="radio" name="t" value="group" class="radio">Group
+                     </span>
+                 </span>
+             </form>
+
+            <span id="right-header">
+                <button id="user"> <%=ub.getFirstName()%> <%=ub.getLastName()%></button>
+                <span id="line"></span>
+                <button id="home">Home</button>
+                <span id="line"></span>
+                <button id="logout">Log Out</button>
+   
+            </span>
+        </div>
+
+
 </div>
 </body>
 </html>

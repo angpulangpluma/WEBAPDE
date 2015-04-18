@@ -7,18 +7,13 @@
 	<script type="text/javascript" src="../others/jquery-2.1.3.min.js"></script>
 	<script>
 	$(document).ready(function(){
-		/*$('.buttons').click(function(){
-		   window.location.href='Home Page.html';
-		});*/
+		
 		$('button[name=login]').click(function(){
 		     var email = $.trim($('input:text[name=emaillogin]').val());
 			 console.log('Email: ' + email);
 			 var password = $.trim($('input:password[name=passwordlogin]').val());
 			 console.log('Password: ' + password);
-			 
-	//		 if(email == '' || email.indexOf('@')!=email.lastIndexOf('@') ){
-	//		    alert('Please enter your email.');
-	//		 }
+                         
 			 if(password == ''){
 			   alert('Please enter your password.');
 			 }
@@ -38,7 +33,7 @@
 		   var password2 = $.trim($('input:password[name=anotherpass]').val());
 		   var email2 = $.trim($('input:text[name=user]').val());
 		   
-		   //if(email2 == '' || email2.indexOf('@')!=email2.lastIndexOf('@') || email2.indexOf('@')==-1){
+		   
                    if(email2==''){
 			    alert('Please enter your username.');
 			 }
@@ -58,16 +53,8 @@
 		  if(password1==''){
 		     alert('Please enter your desired password.');
 		  }
-		  
-		  //if(email2!="" && email2.indexOf("@")==email2.lastIndexOf("@") && email2.indexOf("@")!=-1 && password1!="" && password2!="" && password1==password2 && firstname!="" && lastname!=""){
-                  if(email2!="" && password1!="" && password2!="" && firstname!="" && lastname!=""){
-                     
-                     
-
-		    window.location.href='Home Page.html';
-		}
 		
-		}); 
+		});
 	});
 	</script>
 </head>
@@ -75,7 +62,7 @@
 
 <div id="header">
 	<span id="welcome">Hello!<br/>Welcome to  </span>
-	<span id="name">brainstorm</span>
+	<span id="name">BrainStorm</span>
 </div>
 
 <br/><br/><br/>

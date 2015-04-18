@@ -12,7 +12,6 @@ import Bean.HomePageBean;
 import Bean.Idea;
 import Bean.Member;
 import Bean.Project;
-import Bean.ProjectPageBean;
 import Bean.Topic;
 import java.sql.Connection;
 import java.sql.Date;
@@ -229,7 +228,7 @@ public class ProjectConnection {
     }
     
     public String getGroupName(int groupid){
-        String sql = "select groupID from groups where groupID = " + groupid;
+        String sql = "select groupName from groups where groupID = " + groupid;
         String result = " ";
         try{
             Connection con =  DataBase.getConnection();

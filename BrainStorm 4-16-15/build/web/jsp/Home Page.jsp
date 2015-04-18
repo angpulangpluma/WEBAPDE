@@ -279,15 +279,7 @@
             <span id="right-header">
                 <button id="user"> <%=Bean.getFirstName()%> <%=Bean.getLastName()%></button>
                 <span id="line"></span>
-                <button id="home">Home</button>
-                <span id="line"></span>
                 <button id="logout">Log Out</button>
-                <!---
-                <select id="user-select" class="h-select">
-                        <option>Settings</option>
-                        <option>Log Out</option>
-                </select>
-                -->
             </span>
         </div>
 
@@ -396,26 +388,11 @@
                     <%} %>
                     
                     
-                    <!--
-                    <div class="box">
-                        <div id="content">
-                            <span id="notif-user">Jet Virtusio</span>
-                            posted an idea in
-                            <span id="notif-proj">SWDESPA</span> 
-                            under 
-                            <span id="notif-topic">User Stories</span>
-                        </div>
-                        <div id="date-time">1:22pm</div>
-                    </div>
-                    -->
-                </div>
+
 
             </div>
 
-            <!---
-            <div id="footer">
-            </div>
-            -->
+
 
     </body>
 </html>

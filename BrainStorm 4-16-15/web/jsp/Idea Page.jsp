@@ -1,3 +1,4 @@
+<%@page import="Bean.Group"%>
 <%@page import="Bean.Member"%>
 <%@page import="Bean.Comment"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,8 +9,11 @@
 <head>
 	<title>Team Nerds</title>
 	<link rel="stylesheet" type="text/css" media="all" href="../css/Idea Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script type="text/javascript" src="../others/jquery.min.js"></script>
+	<script type="text/javascript" src="../others/jquery-latest.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="../others/jquery-ui.1.11.4.css"/>
+        <script type="text/javascript" src="../others/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../others/jquery-ui.1.11.4.js"></script>
+        <link rel="shortcut icon" href="../design/Tab Icon.png"/>
 	<script>
           <%
               UserBean u = (UserBean) session.getAttribute("user");
@@ -18,18 +22,14 @@
               Idea idea = Bean.getIdea();
               Member user = idea.getUser();
               ArrayList<Comment> comments = idea.getComments();
+              Group g = (Group)session.getAttribute("group");
           %>
             
             
 	$(document).ready(function(){
-		$("#group").click(function(){
-			window.location.href = "Main Page.html";
-		});
+
 		$("#user").click(function(){
 			window.location.href = "Edit Profile Page.jsp";
-		});
-		$("#home").click(function(){
-			window.location.href = "../ToHomePageServlet";
 		});
 		$("#logout").click(function(){
 			alert("You will be logged out. Please sign in again.");
@@ -37,9 +37,6 @@
 		});
 		$("#icon").click(function(){
 			window.location.href = "../ToHomePageServlet";
-		});
-		$("#grp-name").click(function(){
-			window.location.href = "Main Page.html";
 		});
                 $("#button-comment").click(function(){
 			var commenttext = $("#text-comment").val();
@@ -123,36 +120,61 @@
                     } 
                
                 });
+                
+                var sugg2=[];
+            var sugg=[];
+                $("#search").keyup(function() {
+                    var clickedradio = $("input:radio[name ='t']:checked").val();
+                    search = $("#search").val();
+                    if(clickedradio==="people") {
+                        $.get('../AutoComplete', {keyword: search}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg
+                            });
+                        });
+                    }
+                    else {
+                        $.get('../AutoCompleteGroup', {keyword: search,userid:<%=u.getID()%>}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg2 = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg2
+                            });
+                        });
+                    }
+                });
 	});
 	</script>
 </head>
 <body>
 <div id="header">
-	<span id="left-header">
-		<img id="icon" src="../design/Icon.png"/>
-		<span id="group">Team Nerds</span>
-		<select id="group-select" class="h-select">
-			<option>Members</option>
-			<option>Switch Group</option>
-			<option>Edit Group</option>
-		</select>
-		<input id="search" type="text" placeholder="Search" style="color: black">
-	</span>
-	
-	<span id="right-header">
-            <button id="user"><%=user.getFirstName()%> <%=user.getLastName()%></button>
-		<span id="line"></span>
-		<button id="home">Home</button>
-		<span id="line"></span>
-		<button id="logout">Log Out</button>
-		<!---
-		<select id="user-select" class="h-select">
-			<option>Settings</option>
-			<option>Log Out</option>
-		</select>
-		-->
-	</span>
-</div>
+            <form id="myradio" action="../SearchServlet" method="GET">
+                 <span id="left-header">
+                     <img id="icon" src="../design/Icon.png"/>
+                     <span id="group"><%=g.getGroupName()%></span>
+                     <input id="search" name="searchInput" type="text" placeholder="Search" style="color: black">     
+
+                     <span id="radios">
+                         <input type="radio" name="t" value="people" checked="checked" class="radio">People
+                         <input type="radio" name="t" value="group" class="radio">Group
+                     </span>
+                 </span>
+             </form>
+
+            <span id="right-header">
+                <button id="user"> <%=u.getFirstName()%> <%=u.getLastName()%></button>
+                <span id="line"></span>
+                
+                <button id="logout">Log Out</button>
+                
+            </span>
+        </div>
 
 <div id="idea" align="center">
 	<div class="box">
@@ -181,13 +203,7 @@
 				<span id="comment-content"><%=comments.get(crt).getCommentDesc()%></span>
 			</div>
                         <%}%>
-                    <!--
-			<div class="comment">
-				<span id="comment-user">Hannah Sibayan</span>
-				<span id="comment-date-time">1:55pm</span><br/>
-				<span id="comment-content">Nice nice nice!</span>
-			</div>
-                    -->
+                    
 		</div>
 		<div id="write">
 			<textarea id="text-comment" placeholder="Write your comment here.."></textarea>
@@ -196,9 +212,6 @@
 	</div>
 </div>
 
-<!--
-<div id="footer">
-</div>
--->
+
 </body>
 </html>
