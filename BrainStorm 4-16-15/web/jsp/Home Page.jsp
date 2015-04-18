@@ -7,7 +7,7 @@
 <%@page import="Bean.UserBean"%>
 <html>
     <head>
-        <title>BrainStorm</title>
+        <title>Brainstorm</title>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <script type="text/javascript" src="../others/jquery-latest.js"></script>
@@ -44,6 +44,23 @@
                <% for (int i = 0; i < groups.size(); i++) { %>
                 groupids[<%=i%>] = <%=groups.get(i).getID()%> ;
                 <%}%>
+/*
+                $("#search").keyup(function() {
+                    search = $("#search").val();
+                    console.log("key Up");
+                    $.get('../AutoComplete', {keyword: search}, function(responseText) {
+                        console.log("BITCH PLS");
+                        console.log(responseText);
+                        sugg = responseText.split("\n");
+                        console.log(sugg);
+                    });
+
+                    $("#search").autocomplete({
+                        source: sugg
+                    });
+
+                });
+*/
 
 
                 $('#selectedgroup').text($(groupname).text());
@@ -59,16 +76,23 @@
                 $("#user").click(function() {
                     window.location.href = "Edit Profile Page.jsp";
                 });
-                
+                $("#home").click(function() {
+                    window.location.href = "Home Page.html";
+                });
                 $("#logout").click(function() {
                     alert("You will be logged out. Please sign in again.");
                     window.location.href = "../LogOutServlet";
                 });
-                
                 $("#icon").click(function() {
                     window.location.href = "../ToHomePageServlet";
                 });
-                
+                $("#grp-name").click(function() {
+                    window.location.href = "Main Page.html";
+                });
+
+                //	$(".proj-name").click(function(){
+                //		window.location.href = "Main Page.html";
+                //	});
                 $("#grp-projects").click(function() {
                     pageHide = "#grp-members-page-" + currGroup;
                     pageShow = "#grp-projects-page-" + currGroup;
@@ -94,14 +118,26 @@
 
 
                     $('#selectedgroup').text($(groupname).text());
-                    
+                    // document.getElementById("selectedgroup").textContent=          
                 });
+
 
                 var numberofgroups = <%=groups.size()%>;
                 var addgroupflag = 1;
-               
-                $("#addgroup").click(function() {
+                //$("#newgroupname").hide();
 
+
+                $("#addgroup").click(function() {
+/*
+                    if (addgroupflag === 1) {
+                        addgroupflag = 0;
+                        $("#addgroup").text("Save Group");
+                        $("#newgroupname").show();
+                    }
+
+                    else if (addgroupflag === 0) {
+
+*/
                         if ($("#newgroupname").val().length === 0) {
                             alert("Please enter groupname");
                         } else {
@@ -152,14 +188,14 @@
                                     groupname = "#" + currGroup;
                                     
                                     $('#selectedgroup').text($(groupname).text());
-                               
+                                    // document.getElementById("selectedgroup").textContent=          
                                 });
 
 
 
                             });
 
-                        
+                        //}
                     }
 
                     $(".group").click(function() {
@@ -174,7 +210,7 @@
                         groupname = "#" + currGroup;
 
                         $('#selectedgroup').text($(groupname).text());
-                        
+                        // document.getElementById("selectedgroup").textContent=          
                     });
 
                 });
@@ -262,7 +298,7 @@
                     <select id="grp-list" size="<%=groups.size()%>">
 
                         <%
-                            
+                            //System.out.println("<--->" + groups.size());
                             for (int i = 0; i < groups.size(); i++) {
                                
                         %>                  
@@ -276,12 +312,13 @@
                     <div id="grp-page">
                         <div id="grp-header">
                             <a id="grp-name">
-                                <span id="selectedgroup"></span> 
+                                <span id="selectedgroup">Team Nerds</span> 
                             </a> <span id="grp-line"></span>
                             <a id="grp-projects">Projects</a> <span id="grp-line"></span>
                             <a id="grp-members">Members</a>
                         </div>
-                                              
+                        
+                      <!--span id="addproject"> Add Project </span> <input type="text" id="newproject"-->
                         <div id="adder" class="adders">
                             <input id="newproject" class="adder-input" type="text">
                             <span class="adder-text" id="addproject">Add Project</span>
@@ -350,9 +387,11 @@
                         </div>
                     <%} %>
                     
-                </div>
+                    
+
 
             </div>
+
 
 
     </body>

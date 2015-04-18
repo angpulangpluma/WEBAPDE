@@ -1,17 +1,23 @@
-<%@page import="Bean.Project"%>
 <%@page import="Connection.SearchConnection"%>
 <%@page import="Bean.HomePageBean"%>
 <%@page import="Bean.Group"%>
 <%@page import="Bean.UserBean"%>
 <%@page import="java.util.ArrayList"%>
 <html>
-    <%    
+<head>
+	<title>Brainstorm</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../css/Search Style.css"/>
+	<script type="text/javascript" src="../others/jquery-latest.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="../others/jquery-ui.1.11.4.css"/>
+        <script type="text/javascript" src="../others/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../others/jquery-ui.1.11.4.js"></script>
+        <link rel="shortcut icon" href="../design/Tab Icon.png"/>
+        
+        <%    
             HttpSession s = request.getSession();
-            UserBean user = (UserBean) session.getAttribute("user");
+            UserBean Bean = (UserBean)session.getAttribute("user");
             String chosen = (String) s.getAttribute("chosen");
             HomePageBean pagebean = (HomePageBean) session.getAttribute("homepage");
-            Project p = (Project)session.getAttribute("project");
-            Group g = (Group)session.getAttribute("group");
             SearchConnection sCon = new SearchConnection();
             ArrayList<Group> myGroups = pagebean.getGroups();
             ArrayList<UserBean> users = new ArrayList<>();
@@ -28,12 +34,6 @@
             
             System.out.println("sizes: " + users.size() + " - " + groups.size());
         %>
-        
-<head>
-	<title>BrainStorm - Search Results</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../css/Search Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script src="../others/jquery.js"></script>
         
 	<script>
 	$(document).ready(function(){
@@ -64,7 +64,8 @@
             
             function reloadPeople() {
                 console.log("People: " + "<%= users.size() %>");
-                
+                var id;
+                var name;
                 var clickables = "<input type=\"button\" value=\"Add Member\" class=\"search-button\" name=\"" + id + "\">\n" +
                     "<select class=\"search-select\" id=\"select" + id + "\">" + 
                     <% for(Group tempGroup : myGroups) { %>
@@ -73,8 +74,8 @@
                     "</select>";
                     
                 <% for(UserBean tempUser : users) { %>
-                    var name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
-                    var id = "<%=tempUser.getID()%>";
+                    name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
+                    id = "<%=tempUser.getID()%>";
                     appendBox(name, id, clickables, "");
                     console.log("   " + name);
                 <% } %>
@@ -140,21 +141,45 @@
             });
             
             $("option#edit").click(function(){
-                    alert("edit");
                     window.location.href = "Edit Profile Page.html";
             });
             $("option#logout").click(function(){
-                    alert("logout");
-                    window.location.href = "Log In and Sign Up.html";
+                    alert("You will be logged out. Please sign in again.");
+                        window.location.href = "../LogOutServlet";
             });
-
             $("#icon").click(function(){
                     window.location.href = "../ToHomePageServlet";
             });
             
-            $(".proj-name").click(function(){
-                    window.location.href = "../IdeaPageServlet?projid=<%=p.getID()%>&grpid=<%=g.getID()%>";
-            });
+            var sugg2=[];
+            var sugg=[];
+                $("#search").keyup(function() {
+                    var clickedradio = $("input:radio[name ='t']:checked").val();
+                    search = $("#search").val();
+                    console.log("Entered: " + search);
+                    if(clickedradio==="people") {
+                        $.get('../AutoComplete', {keyword: search}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg
+                            });
+                        });
+                    }
+                    else {
+                        $.get('../AutoCompleteGroup', {keyword: search,userid:<%=Bean.getID()%>}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg2 = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg2
+                            });
+                        });
+                    }
+                });
             
 	});
 	</script>
@@ -162,20 +187,30 @@
 <body>
 
 <div id="header">
-	<span id="left-header">
-		<img id="icon" src="../design/Icon.png"/>
-		<input id="search" type="text" placeholder="Search" style="color: black">
-	</span>
-	
-	<span id="right-header">
-		<button id="user"><%=user.getFirstName()%><%=user.getLastName()%></button>
-		<span id="line"></span>
-		<select id="user-select" class="h-select">
-			<option id="edit">Edit Profile</option>
-			<option id="logout">Log Out</option>
-		</select>
-	</span>
-</div>
+            <form id="myradio" action="../SearchServlet" method="GET">
+                 <span id="left-header">
+                     <img id="icon" src="../design/Icon.png"/>
+                     <input id="search" name="searchInput" type="text" placeholder="Search" style="color: black">     
+
+                     <span id="radios">
+                         <input type="radio" name="t" value="people" checked="checked" class="radio">People
+                         <input type="radio" name="t" value="group" class="radio">Group
+                     </span>
+                 </span>
+             </form>
+
+            <span id="right-header">
+                <button id="user"> <%=Bean.getFirstName()%> <%=Bean.getLastName()%></button>
+                <span id="line"></span>
+                <button id="logout">Log Out</button>
+                <!---
+                <select id="user-select" class="h-select">
+                        <option>Settings</option>
+                        <option>Log Out</option>
+                </select>
+                -->
+            </span>
+        </div>
 
 <div id="center-content">
 </div>

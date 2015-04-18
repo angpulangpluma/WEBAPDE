@@ -17,8 +17,11 @@
 	<title><%=Bean.getName()%> under <%=g.getGroupName()%></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" type="text/css" media="all" href="../css/Main Style.css"/>
-	<link rel="shortcut icon" href="../design/Tab Icon.png"/>
-	<script type="text/javascript" src="../others/jquery.min.js"></script>
+	<script type="text/javascript" src="../others/jquery-latest.js"></script>
+        <link rel="stylesheet" type="text/css" media="all" href="../others/jquery-ui.1.11.4.css"/>
+        <script type="text/javascript" src="../others/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="../others/jquery-ui.1.11.4.js"></script>
+        <link rel="shortcut icon" href="../design/Tab Icon.png"/>
 	<script type="text/javascript" src="../others/brainstorm_func.js"></script>
 	   
         <script>
@@ -156,7 +159,7 @@
             
             $(document).on("click","#logout", function(){
                 alert("You will be logged out. Please sign in again.");
-                window.location.href = "Log In and Sign Up.html";
+                        window.location.href = "../LogOutServlet";
             });
             $(document).on("click","#icon", function(){
                 window.location.href = "../ToHomePageServlet";
@@ -179,6 +182,36 @@
                 console.log(status);
                 window.location.href = "../MainIdeaServlet?id="+status;
             });
+            
+            var sugg2=[];
+            var sugg=[];
+                $("#search").keyup(function() {
+                    var clickedradio = $("input:radio[name ='t']:checked").val();
+                    search = $("#search").val();
+                    console.log("Entered: " + search);
+                    if(clickedradio==="people") {
+                        $.get('../AutoComplete', {keyword: search}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg
+                            });
+                        });
+                    }
+                    else {
+                        $.get('../AutoCompleteGroup', {keyword: search,userid:<%=u.getID()%>}, function(responseText) {
+                            console.log("BITCH PLS");
+                            console.log(responseText);
+                            sugg2 = responseText.split("\n");
+                            console.log(sugg);
+                            $("#search").autocomplete({
+                                source: sugg2
+                            });
+                        });
+                    }
+                });
 	});
 	</script>
 </head>
@@ -187,18 +220,27 @@
 <div id="bg">
 
 <div id="header">
-	<span id="left-header">
-		<img id="icon" src="../design/Icon.png"/>
-		<span id="group"><%=g.getGroupName()%></span>
-		<input id="search" type="text" placeholder="Search" style="color: black">
-	</span>
-	
-	<span id="right-header">
-		<button id="user"><%=u.getFirstName()%> <%=u.getLastName()%></button>
-		<span id="line"></span>
-		<button id="logout">Log Out</button>
-	</span>
-</div>
+            <form id="myradio" action="../SearchServlet" method="GET">
+                 <span id="left-header">
+                     <img id="icon" src="../design/Icon.png"/>
+                     <span id="group"><%=g.getGroupName()%></span>
+                     <input id="search" name="searchInput" type="text" placeholder="Search" style="color: black">     
+
+                     <span id="radios">
+                         <input type="radio" name="t" value="people" checked="checked" class="radio">People
+                         <input type="radio" name="t" value="group" class="radio">Group
+                     </span>
+                 </span>
+             </form>
+
+            <span id="right-header">
+                <button id="user"> <%=u.getFirstName()%> <%=u.getLastName()%></button>
+                <span id="line"></span>
+
+                <button id="logout">Log Out</button>
+ 
+            </span>
+        </div>
 
 <div id="title-head">
 	<span id="title-project"><%=Bean.getName()%></span>
