@@ -3,6 +3,15 @@
 	src: url("../design/Lato-Light.ttf");
 }
 
+#radios {
+    position: relative;
+    top: -9px;
+}
+
+.radio:hover {
+    cursor: pointer;
+}
+
 body {
 	background-color: #F5F5F5;
 	background-repeat: repeat;
