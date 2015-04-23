@@ -70,30 +70,23 @@
             
             function reloadPeople() {
                 console.log("People: " + "<%= users.size() %>");
-<<<<<<< HEAD
-                   
+          
                 <% for(UserBean tempUser : users) { %>
                     var name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
                     var id = "<%=tempUser.getID()%>";  
-                   
-=======
+          
                 var id;
                 var name;
->>>>>>> origin/4-10-Branch
+
                 var clickables = "<input type=\"button\" value=\"Add Member\" class=\"search-button\" name=\"" + id + "\">\n" +
                     "<select class=\"search-select\" id=\"select" + id + "\">" + 
                     <% for(Group tempGroup : myGroups) { %>
                        "<option name=\"" + <%= tempGroup.getID() %> + "\"><%= tempGroup.getGroupName() %></option>" +   
                     <% } %>
-                    "</select>";
-                    
-<<<<<<< HEAD
-
-=======
-                <% for(UserBean tempUser : users) { %>
+                    "</select>";                            
                     name = "<%=tempUser.getFirstName()%>" + " " + "<%=tempUser.getLastName()%>";
                     id = "<%=tempUser.getID()%>";
->>>>>>> origin/4-10-Branch
+
                     appendBox(name, id, clickables, "");
                     console.log("   " + name);
                 <% } %>
@@ -161,7 +154,7 @@
             $("option#edit").click(function(){
                     window.location.href = "Edit Profile Page.html";
             });
-            $("option#logout").click(function(){
+            $("#logout").click(function(){
                     alert("You will be logged out. Please sign in again.");
                         window.location.href = "../LogOutServlet";
             });

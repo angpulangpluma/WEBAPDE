@@ -77,7 +77,7 @@
                     window.location.href = "Edit Profile Page.jsp";
                 });
                 $("#home").click(function() {
-                    window.location.href = "Home Page.html";
+                     window.location.href = "../ToHomePageServlet";
                 });
                 $("#logout").click(function() {
                     alert("You will be logged out. Please sign in again.");
@@ -135,8 +135,7 @@
                         $("#newgroupname").show();
                     }
 
-                    else if (addgroupflag === 0) {
-
+                    else if (addgroupflag === 0) 
 */
                         if ($("#newgroupname").val().length === 0) {
                             alert("Please enter groupname");
@@ -144,7 +143,7 @@
                             var newgroupname = $("#newgroupname").val();
                             $("#addgroup").text("Add Group");
                             $("#newgroupname").val("");
-                            $("#newgroupname").hide();
+                            //$("#newgroupname").hide();
                             addgroupflag = 1;
                             $.get('../AddGroupServlet', {name: newgroupname}, function(responseText) {
                                 
@@ -254,7 +253,7 @@
                         $.get('../AddProjectServlet', { groupid :groupids[currGroup],name:newproject}, function(responseText) {
                            var maxid = responseText;
                            $("#grp-projects-page-"+currGroup).append(" <div class=\"grp-box\"><a href=\"../IdeaPageServlet?projid="+maxid+"&"+"grpid="+groupids[currGroup]+"\"class=\"proj-name\">"+ newproject+"</a></div>");
-                           
+                           $("#newproject").val("");
                         });
                     }
                 });

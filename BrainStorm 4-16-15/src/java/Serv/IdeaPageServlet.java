@@ -66,6 +66,8 @@ public class IdeaPageServlet extends HttpServlet {
         String strid = request.getParameter("projid");
         int id = Integer.parseInt(strid.trim());
         strid = request.getParameter("grpid");
+        
+        
         int grpid = Integer.parseInt(strid.trim());
         HttpSession session = request.getSession();
         UserBean Bean = (UserBean) session.getAttribute("user");

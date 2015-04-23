@@ -142,7 +142,7 @@ public class PostIdeaServlet extends HttpServlet {
             nc.saveNotif(uid, groupid,"posted a new idea under project "+projectname , members);
         }
       
-        response.sendRedirect("IdeaPageServlet?id="+intproject);
+        response.sendRedirect("IdeaPageServlet?projid="+intproject+"&"+"grpid="+groupid);
     }
 
     /**

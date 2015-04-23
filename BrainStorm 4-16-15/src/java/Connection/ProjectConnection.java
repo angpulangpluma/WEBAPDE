@@ -5,7 +5,6 @@
  */
 
 package Connection;
-
 import Bean.Comment;
 import Bean.Group;
 import Bean.HomePageBean;
